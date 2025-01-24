@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SqlDialectMappings">
+    <file url="file://$PROJECT_DIR$/FormsService/src/main/resources/db/changelog/v1.0.0/10-create-forms-schema.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/FormsService/src/main/resources/db/changelog/v1.0.0/10-drop-forms-schema.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/FormsService/src/main/resources/db/changelog/v1.0.0/11-clear-forms-schema.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/FormsService/src/main/resources/db/changelog/v1.0.0/11-init-forms-schema.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/FormsService/src/main/resources/db/changelog/v1.0.0/20-create-skills-schema.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/FormsService/src/main/resources/db/changelog/v1.0.0/20-drop-skills-schema.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/FormsService/src/main/resources/db/changelog/v1.0.0/21-clear-skills-schema.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/FormsService/src/main/resources/db/changelog/v1.0.0/21-init-skills-schema.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/FormsService/src/main/resources/db/changelog/v1.0.0/30-create-questions-schema.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/FormsService/src/main/resources/db/changelog/v1.0.0/30-drop-questions-schema.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/FormsService/src/main/resources/db/changelog/v1.0.0/31-clear-questions-schema.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/FormsService/src/main/resources/db/changelog/v1.0.0/31-init-questions-schema.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/FormsService/src/main/resources/db/changelog/v1.0.0/40-create-forms-questions-schema.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/FormsService/src/main/resources/db/changelog/v1.0.0/40-drop-forms-questions-schema.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/FormsService/src/main/resources/db/changelog/v1.0.0/41-clear-forms-questions-schema.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/FormsService/src/main/resources/db/changelog/v1.0.0/41-init-forms-questions-schema.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/PackagesService/src/main/resources/db/changelog/v1.0.0/10-create-statuses-schema.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/PackagesService/src/main/resources/db/changelog/v1.0.0/10-drop-statuses-schema.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/PackagesService/src/main/resources/db/changelog/v1.0.0/11-clear-statuses-schema.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/PackagesService/src/main/resources/db/changelog/v1.0.0/11-init-statuses-schema.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/PackagesService/src/main/resources/db/changelog/v1.0.0/20-create-packages-schema.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/PackagesService/src/main/resources/db/changelog/v1.0.0/20-drop-packages-schema.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/PackagesService/src/main/resources/db/changelog/v1.0.0/21-clear-packages-schema.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/PackagesService/src/main/resources/db/changelog/v1.0.0/21-init-packages-schema.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/PackagesService/src/main/resources/db/changelog/v1.0.0/30-create-feedbacks-schema.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/PackagesService/src/main/resources/db/changelog/v1.0.0/30-drop-feedbacks-schema.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/PackagesService/src/main/resources/db/changelog/v1.0.0/31-clear-feedbacks-schema.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/PackagesService/src/main/resources/db/changelog/v1.0.0/31-init-feedbacks-schema.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/PackagesService/src/main/resources/db/changelog/v1.0.0/40-create-responses-schema.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/PackagesService/src/main/resources/db/changelog/v1.0.0/40-drop-responses-schema.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/PackagesService/src/main/resources/db/changelog/v1.0.0/41-clear-responses-schema.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/PackagesService/src/main/resources/db/changelog/v1.0.0/41-init-responses-schema.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/UsersService/src/main/resources/db/changelog/v1.0.0/10-create-positions-schema.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/UsersService/src/main/resources/db/changelog/v1.0.0/10-drop-positions-schema.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/UsersService/src/main/resources/db/changelog/v1.0.0/11-clear-positions-schema.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/UsersService/src/main/resources/db/changelog/v1.0.0/11-init-positions-schema.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/UsersService/src/main/resources/db/changelog/v1.0.0/20-create-statuses-schema.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/UsersService/src/main/resources/db/changelog/v1.0.0/20-drop-statuses-schema.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/UsersService/src/main/resources/db/changelog/v1.0.0/21-clear-statuses-schema.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/UsersService/src/main/resources/db/changelog/v1.0.0/21-init-statuses-schema.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/UsersService/src/main/resources/db/changelog/v1.0.0/30-create-teams-schema.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/UsersService/src/main/resources/db/changelog/v1.0.0/30-drop-teams-schema.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/UsersService/src/main/resources/db/changelog/v1.0.0/31-clear-teams-schema.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/UsersService/src/main/resources/db/changelog/v1.0.0/31-init-teams-schema.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/UsersService/src/main/resources/db/changelog/v1.0.0/40-create-users-schema.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/UsersService/src/main/resources/db/changelog/v1.0.0/40-drop-users-schema.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/UsersService/src/main/resources/db/changelog/v1.0.0/41-clear-users-schema.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/UsersService/src/main/resources/db/changelog/v1.0.0/41-init-users-schema.sql" dialect="PostgreSQL" />
+  </component>
+</project>
