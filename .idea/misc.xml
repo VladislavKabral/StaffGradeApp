@@ -5,8 +5,8 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/FormsService/pom.xml" />
         <option value="$PROJECT_DIR$/UsersService/pom.xml" />
+        <option value="$PROJECT_DIR$/FormsService/pom.xml" />
         <option value="$PROJECT_DIR$/PackagesService/pom.xml" />
       </list>
     </option>

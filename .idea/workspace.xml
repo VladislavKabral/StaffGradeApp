@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="3fea442a-58f2-45dc-a128-89fed2a9bee5" name="Changes" comment="Add liquibase config for services">
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UsersService/src/main/java/by/kabral/usersservice/config/AppConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UsersService/src/main/java/by/kabral/usersservice/controller/PositionsController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UsersService/src/main/java/by/kabral/usersservice/controller/TeamsController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UsersService/src/main/java/by/kabral/usersservice/controller/UsersController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UsersService/src/main/java/by/kabral/usersservice/controller/advice/ExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UsersService/src/main/java/by/kabral/usersservice/dto/ErrorResponseDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UsersService/src/main/java/by/kabral/usersservice/dto/NewUserDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UsersService/src/main/java/by/kabral/usersservice/dto/PositionDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UsersService/src/main/java/by/kabral/usersservice/dto/PositionsListDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UsersService/src/main/java/by/kabral/usersservice/dto/TeamDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UsersService/src/main/java/by/kabral/usersservice/dto/TeamsListDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UsersService/src/main/java/by/kabral/usersservice/dto/UserDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UsersService/src/main/java/by/kabral/usersservice/dto/UsersListDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UsersService/src/main/java/by/kabral/usersservice/dto/UsersPageDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UsersService/src/main/java/by/kabral/usersservice/exception/EntityNotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UsersService/src/main/java/by/kabral/usersservice/mapper/PositionMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UsersService/src/main/java/by/kabral/usersservice/mapper/TeamsMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UsersService/src/main/java/by/kabral/usersservice/mapper/UsersMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UsersService/src/main/java/by/kabral/usersservice/model/Position.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UsersService/src/main/java/by/kabral/usersservice/model/Status.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UsersService/src/main/java/by/kabral/usersservice/model/Team.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UsersService/src/main/java/by/kabral/usersservice/model/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UsersService/src/main/java/by/kabral/usersservice/repository/PositionsRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UsersService/src/main/java/by/kabral/usersservice/repository/StatusRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UsersService/src/main/java/by/kabral/usersservice/repository/TeamsRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UsersService/src/main/java/by/kabral/usersservice/repository/UsersRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UsersService/src/main/java/by/kabral/usersservice/service/EntitiesService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UsersService/src/main/java/by/kabral/usersservice/service/PositionsServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UsersService/src/main/java/by/kabral/usersservice/service/TeamsServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UsersService/src/main/java/by/kabral/usersservice/service/UsersServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UsersService/src/main/java/by/kabral/usersservice/util/Constants.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UsersService/src/main/java/by/kabral/usersservice/util/Message.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UsersService/src/main/java/by/kabral/usersservice/util/Regex.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UsersService/src/main/java/by/kabral/usersservice/util/StatusName.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UsersService/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/UsersService/pom.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="develop" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
+  <component name="ProjectId" id="2rzt9WiE2xqEUMK7YntxXYRW599" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor&quot;: &quot;Run&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;Spring Boot.FormsServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.PackagesServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.UsersServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;model-crud-designing&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;21&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Projects/Staff_Grade/StaffGradeApp/PackagesService/src/main/resources/db/changelog&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
+    ],
+    &quot;com.intellij.ide.scratch.LRUPopupBuilder$1/&quot;: [
+      &quot;PostgreSQL&quot;
+    ]
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Projects\Staff_Grade\StaffGradeApp\PackagesService\src\main\resources\db\changelog" />
+      <recent name="D:\Projects\Staff_Grade\StaffGradeApp\FormsService\src\main\resources\db\changelog" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="MicronautRunConfigurationType" />
+        <option value="QuarkusRunConfigurationType" />
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.UsersServiceApplication">
+    <configuration name="FormsServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="FormsService" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="by.kabral.formsservice.FormsServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PackagesServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="PackagesService" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="by.kabral.packagesservice.PackagesServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UsersServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="UsersService" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="by.kabral.usersservice.UsersServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
+        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3fea442a-58f2-45dc-a128-89fed2a9bee5" name="Changes" comment="" />
+      <created>1737573581438</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1737573581438</updated>
+      <workItem from="1737573582146" duration="7332000" />
+      <workItem from="1737636406253" duration="8249000" />
+      <workItem from="1737669671572" duration="2100000" />
+      <workItem from="1737722777367" duration="7625000" />
+      <workItem from="1737751146960" duration="130000" />
+      <workItem from="1737751306320" duration="725000" />
+      <workItem from="1737752037775" duration="1990000" />
+      <workItem from="1737825743858" duration="8455000" />
+      <workItem from="1737980922993" duration="6793000" />
+    </task>
+    <task id="LOCAL-00001" summary="Add liquibase config for services">
+      <option name="closed" value="true" />
+      <created>1737751049151</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1737751049151</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Add liquibase config for services">
+      <option name="closed" value="true" />
+      <created>1737751668242</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1737751668242</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Add liquibase config for services" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add liquibase config for services" />
+  </component>
+</project>
