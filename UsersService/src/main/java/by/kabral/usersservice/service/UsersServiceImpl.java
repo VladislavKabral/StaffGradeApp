@@ -5,10 +5,13 @@ import by.kabral.usersservice.dto.UserDto;
 import by.kabral.usersservice.dto.UsersListDto;
 import by.kabral.usersservice.dto.UsersPageDto;
 import by.kabral.usersservice.exception.EntityNotFoundException;
+import by.kabral.usersservice.exception.EntityValidateException;
+import by.kabral.usersservice.exception.InvalidRequestDataException;
 import by.kabral.usersservice.mapper.UsersMapper;
 import by.kabral.usersservice.model.User;
 import by.kabral.usersservice.repository.StatusRepository;
 import by.kabral.usersservice.repository.UsersRepository;
+import by.kabral.usersservice.util.validator.UsersValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -28,13 +31,34 @@ public class UsersServiceImpl implements EntitiesService<UsersListDto, User, Use
   private final UsersRepository usersRepository;
   private final StatusRepository statusRepository;
   private final UsersMapper usersMapper;
-
+  private final UsersValidator usersValidator;
 
   @Override
   @Transactional(readOnly = true)
   public UsersListDto findAll() {
     return UsersListDto.builder()
             .users(usersMapper.toListDto(usersRepository.findAll()))
+            .build();
+  }
+
+  @Transactional(readOnly = true)
+  public UsersListDto findUsersByStatus(String status) {
+    List<User> users;
+
+    if (status.equals(NOT_FIRED)) {
+      users = usersRepository.findAll()
+              .stream()
+              .filter(user -> !user.getStatus().getName().equals(FIRED))
+              .toList();
+    } else {
+      users = usersRepository.findAll()
+              .stream()
+              .filter(user -> user.getStatus().getName().equals(status))
+              .toList();
+    }
+
+    return UsersListDto.builder()
+            .users(usersMapper.toListDto(users))
             .build();
   }
 
@@ -45,11 +69,10 @@ public class UsersServiceImpl implements EntitiesService<UsersListDto, User, Use
             .orElseThrow(() -> new EntityNotFoundException(id.toString()));
   }
 
-  public UsersPageDto findUsersPage(int index, int count, String sortField) {
-//    if ((index <= 0) || (count <= 0)) {
-//      log.info(RECEIVED_PAGE_PARAMETERS_ARE_INVALID);
-//      throw new InvalidRequestDataException(INVALID_PAGE_REQUEST);
-//    }
+  public UsersPageDto findUsersPage(int index, int count, String sortField) throws InvalidRequestDataException {
+    if ((index <= 0) || (count <= 0)) {
+      throw new InvalidRequestDataException(INVALID_PAGE_REQUEST);
+    }
 
     List<User> users = usersRepository
             .findAll(PageRequest.of(index - 1, count, Sort.by(sortField))).getContent()
@@ -72,22 +95,30 @@ public class UsersServiceImpl implements EntitiesService<UsersListDto, User, Use
 
   @Override
   @Transactional
-  public UserDto save(NewUserDto newUserDto) {
-    newUserDto.setStatus(statusRepository.findByName(AT_WORK));
-    //TODO: encode password
-    return usersMapper.toDto(usersRepository
-            .save(usersMapper.toEntity(newUserDto)));
+  public UserDto save(NewUserDto newUserDto) throws EntityValidateException {
+    User user = usersMapper.toEntity(newUserDto);
+    usersValidator.validate(user);
+    user.setStatus(statusRepository.findByName(AT_WORK));
+
+    UserDto userDto = usersMapper.toDto(usersRepository.save(user));
+
+    if (userDto == null) {
+      throw new EntityValidateException(String.format(USER_NOT_CREATED, newUserDto.getEmail()));
+    }
+
+    return userDto;
   }
 
   @Override
   @Transactional
-  public UserDto update(UUID id, NewUserDto entity) throws EntityNotFoundException {
+  public UserDto update(UUID id, NewUserDto entity) throws EntityNotFoundException, EntityValidateException {
     if (!usersRepository.existsById(id)) {
       throw new EntityNotFoundException(USER_NOT_FOUND);
     }
 
     User user = usersMapper.toEntity(entity);
     user.setId(id);
+    usersValidator.validate(user);
     return usersMapper.toDto(usersRepository.save(user));
   }
 

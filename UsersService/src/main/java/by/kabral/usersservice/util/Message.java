@@ -5,12 +5,14 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 public class Message {
 
-  public final String INVALID_PAGE_REQUEST = "Number of page and count of elements can't be less than zero.";
-  public final String USER_NOT_FOUND = "User with id '%d' wasn't found.";
-  public final String TEAM_NOT_FOUND = "Team with id '%d' wasn't found.";
-  public final String POSITION_NOT_FOUND = "Position with id '%d' wasn't found.";
-  public final String USER_NOT_CREATED = "User with email '%s' wasn't created.";
-  public final String USER_LASTNAME_SIZE_IS_INVALID = "User's lastname must be between 2 and 50 symbols.";
+  public final String INVALID_PAGE_REQUEST = "The number of page and count of elements can't be less than zero.";
+  public final String USER_NOT_FOUND = "The user with id '%d' wasn't found.";
+  public final String TEAM_NOT_FOUND = "The team with id '%d' wasn't found.";
+  public final String POSITION_NOT_FOUND = "The position with id '%d' wasn't found.";
+  public final String USER_NOT_CREATED = "The user with email '%s' wasn't created.";
+  public final String TEAM_NOT_CREATED = "The team with name '%s' wasn't created.";
+  public final String POSITION_NOT_CREATED = "The position with name '%s' wasn't created.";
+  public final String USER_LASTNAME_SIZE_IS_INVALID = "The user's lastname must be between 2 and 50 symbols.";
   public final String TEAM_NAME_SIZE_IS_INVALID = "Team's name must be between 2 and 50 symbols.";
   public final String POSITION_NAME_SIZE_IS_INVALID = "Position's lastname must be between 2 and 50 symbols.";
   public final String USER_LASTNAME_BODY_IS_INVALID = "User's lastname must contain only letters.";
@@ -28,7 +30,9 @@ public class Message {
   public final String METHOD_NOT_ALLOWED = "%s for this endpoint.";
   public final String REQUEST_PARAMETER_IS_INVALID = "Failed to convert value in request parameter.";
   public final String CANNOT_GET_RESPONSE_FROM_EXTERNAL_SERVICE = "External service '%s' failed to process after max retries.";
-  public final String USER_WITH_GIVEN_EMAIL_ALREADY_EXISTS = "User with email '%s' already exists.";
+  public final String USER_WITH_GIVEN_EMAIL_ALREADY_EXISTS = "The user with email '%s' already exists.";
+  public final String POSITION_WITH_GIVEN_NAME_ALREADY_EXISTS = "The position with name '%s' already exists.";
+  public final String TEAM_WITH_GIVEN_NAME_ALREADY_EXISTS = "The team with name '%s' already exists.";
   public final String FIND_ALL_USERS = "Finding all users.";
   public final String RECEIVED_PAGE_PARAMETERS_ARE_INVALID = "Invalid page parameters were received";
   public final String FIND_USERS = "Finding users from the given page";
@@ -42,5 +46,6 @@ public class Message {
   public final String USER_WAS_DEACTIVATED = "The user with id '%d' was deactivated.";
   public final String FIND_USER_PROFILE = "Finding a profile of the user with id '%d'";
   public final String CREATING_USER_ALREADY_EXISTS = "Creating user already exists (existing parameter is '%s')";
+  public final String EXTERNAL_SERVICE_IS_UNAVAILABLE = "Cannot connect to external service.";
 
 }

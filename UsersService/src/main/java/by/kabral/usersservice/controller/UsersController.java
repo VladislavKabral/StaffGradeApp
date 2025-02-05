@@ -5,6 +5,8 @@ import by.kabral.usersservice.dto.UserDto;
 import by.kabral.usersservice.dto.UsersListDto;
 import by.kabral.usersservice.dto.UsersPageDto;
 import by.kabral.usersservice.exception.EntityNotFoundException;
+import by.kabral.usersservice.exception.EntityValidateException;
+import by.kabral.usersservice.exception.InvalidRequestDataException;
 import by.kabral.usersservice.service.UsersServiceImpl;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -31,14 +33,19 @@ public class UsersController {
   private final UsersServiceImpl usersService;
 
   @GetMapping
-  public ResponseEntity<UsersListDto> getAllUsers() {
+  public ResponseEntity<UsersListDto> getUsers() {
     return new ResponseEntity<>(usersService.findAll(), HttpStatus.OK);
+  }
+
+  @GetMapping(params = {"status"})
+  public ResponseEntity<UsersListDto> getUsersByStatus(@RequestParam(value = "status") String status) {
+    return new ResponseEntity<>(usersService.findUsersByStatus(status), HttpStatus.OK);
   }
 
   @GetMapping(params = {"page", "size", "sort"})
   public ResponseEntity<UsersPageDto> getUsersPage(@RequestParam(name = "page", required = false, defaultValue = "1")  int page,
                                                    @RequestParam(name = "size", required = false, defaultValue = "10") int size,
-                                                   @RequestParam(value = "sort", required = false, defaultValue = "lastname") String sortField) {
+                                                   @RequestParam(value = "sort", required = false, defaultValue = "lastname") String sortField) throws InvalidRequestDataException {
     return new ResponseEntity<>(usersService.findUsersPage(page, size, sortField), HttpStatus.OK);
   }
 
@@ -48,12 +55,12 @@ public class UsersController {
   }
 
   @PostMapping
-  public ResponseEntity<UserDto> saveUser(@RequestBody @Valid NewUserDto newUserDto) {
+  public ResponseEntity<UserDto> saveUser(@RequestBody @Valid NewUserDto newUserDto) throws EntityValidateException {
     return new ResponseEntity<>(usersService.save(newUserDto), HttpStatus.CREATED);
   }
 
   @PutMapping("/{id}")
-  public ResponseEntity<UserDto> updateUser(@PathVariable UUID id, @RequestBody @Valid NewUserDto newUserDto) throws EntityNotFoundException {
+  public ResponseEntity<UserDto> updateUser(@PathVariable UUID id, @RequestBody @Valid NewUserDto newUserDto) throws EntityNotFoundException, EntityValidateException {
     return new ResponseEntity<>(usersService.update(id, newUserDto), HttpStatus.OK);
   }
 

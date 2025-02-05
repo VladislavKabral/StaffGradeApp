@@ -3,6 +3,7 @@ package by.kabral.usersservice.controller;
 import by.kabral.usersservice.dto.PositionDto;
 import by.kabral.usersservice.dto.PositionsListDto;
 import by.kabral.usersservice.exception.EntityNotFoundException;
+import by.kabral.usersservice.exception.EntityValidateException;
 import by.kabral.usersservice.service.PositionsServiceImpl;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -37,13 +38,13 @@ public class PositionsController {
   }
 
   @PostMapping
-  public ResponseEntity<PositionDto> savePosition(@RequestBody @Valid PositionDto positionDto) {
+  public ResponseEntity<PositionDto> savePosition(@RequestBody @Valid PositionDto positionDto) throws EntityValidateException {
     return new ResponseEntity<>(positionsService.save(positionDto), HttpStatus.CREATED);
   }
 
   @PutMapping("/{id}")
   public ResponseEntity<PositionDto> updatePosition(@PathVariable("id") UUID id,
-                                                    @RequestBody @Valid PositionDto positionDto) throws EntityNotFoundException {
+                                                    @RequestBody @Valid PositionDto positionDto) throws EntityNotFoundException, EntityValidateException {
     return new ResponseEntity<>(positionsService.update(id, positionDto), HttpStatus.OK);
   }
 

@@ -3,6 +3,7 @@ package by.kabral.usersservice.controller;
 import by.kabral.usersservice.dto.TeamDto;
 import by.kabral.usersservice.dto.TeamsListDto;
 import by.kabral.usersservice.exception.EntityNotFoundException;
+import by.kabral.usersservice.exception.EntityValidateException;
 import by.kabral.usersservice.service.TeamsServiceImpl;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -37,13 +38,13 @@ public class TeamsController {
   }
 
   @PostMapping
-  public ResponseEntity<TeamDto> saveTeam(@RequestBody @Valid TeamDto teamDto) {
+  public ResponseEntity<TeamDto> saveTeam(@RequestBody @Valid TeamDto teamDto) throws EntityValidateException {
     return new ResponseEntity<>(teamsService.save(teamDto), HttpStatus.CREATED);
   }
 
   @PutMapping("/{id}")
   public ResponseEntity<TeamDto> updateTeam(@PathVariable UUID id,
-                                            @RequestBody @Valid TeamDto teamDto) throws EntityNotFoundException {
+                                            @RequestBody @Valid TeamDto teamDto) throws EntityNotFoundException, EntityValidateException {
     return new ResponseEntity<>(teamsService.update(id, teamDto), HttpStatus.OK);
   }
 

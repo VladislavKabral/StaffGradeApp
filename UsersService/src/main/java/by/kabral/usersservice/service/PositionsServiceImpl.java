@@ -3,9 +3,11 @@ package by.kabral.usersservice.service;
 import by.kabral.usersservice.dto.PositionDto;
 import by.kabral.usersservice.dto.PositionsListDto;
 import by.kabral.usersservice.exception.EntityNotFoundException;
+import by.kabral.usersservice.exception.EntityValidateException;
 import by.kabral.usersservice.mapper.PositionMapper;
 import by.kabral.usersservice.model.Position;
 import by.kabral.usersservice.repository.PositionsRepository;
+import by.kabral.usersservice.util.validator.PositionsValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,6 +21,7 @@ public class PositionsServiceImpl implements EntitiesService<PositionsListDto, P
 
   private final PositionsRepository positionsRepository;
   private final PositionMapper positionMapper;
+  private final PositionsValidator positionsValidator;
 
   @Override
   @Transactional(readOnly = true)
@@ -41,22 +44,24 @@ public class PositionsServiceImpl implements EntitiesService<PositionsListDto, P
 
   @Override
   @Transactional
-  public PositionDto save(PositionDto entity) {
+  public PositionDto save(PositionDto entity) throws EntityValidateException {
+    Position position = positionMapper.toEntity(entity);
+    positionsValidator.validate(position);
     return positionMapper.toDto(positionsRepository
-            .save(positionMapper.toEntity(entity)));
+            .save(position));
   }
 
   @Override
   @Transactional
-  public PositionDto update(UUID id, PositionDto entity) throws EntityNotFoundException {
+  public PositionDto update(UUID id, PositionDto entity) throws EntityNotFoundException, EntityValidateException {
     if (!positionsRepository.existsById(id)) {
       throw new EntityNotFoundException(POSITION_NOT_FOUND);
     }
 
     Position position = positionMapper.toEntity(entity);
     position.setId(id);
-    return positionMapper.toDto(positionsRepository
-            .save(position));
+    positionsValidator.validate(position);
+    return positionMapper.toDto(positionsRepository.save(position));
   }
 
   @Override
