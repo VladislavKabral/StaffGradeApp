@@ -47,8 +47,14 @@ public class PositionsServiceImpl implements EntitiesService<PositionsListDto, P
   public PositionDto save(PositionDto entity) throws EntityValidateException {
     Position position = positionMapper.toEntity(entity);
     positionsValidator.validate(position);
-    return positionMapper.toDto(positionsRepository
-            .save(position));
+
+    PositionDto positionDto = positionMapper.toDto(positionsRepository.save(position));
+
+    if (positionDto.getId() == null) {
+      throw new EntityValidateException(String.format(POSITION_NOT_CREATED, position.getName()));
+    }
+
+    return positionDto;
   }
 
   @Override
@@ -59,7 +65,6 @@ public class PositionsServiceImpl implements EntitiesService<PositionsListDto, P
     }
 
     Position position = positionMapper.toEntity(entity);
-    position.setId(id);
     positionsValidator.validate(position);
     return positionMapper.toDto(positionsRepository.save(position));
   }

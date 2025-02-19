@@ -45,10 +45,17 @@ public class TeamsServiceImpl implements EntitiesService<TeamsListDto, Team, Tea
 
   @Override
   @Transactional
-  public TeamDto save(TeamDto teamDto) throws EntityValidateException {
-    Team team = teamsMapper.toEntity(teamDto);
+  public TeamDto save(TeamDto entity) throws EntityValidateException {
+    Team team = teamsMapper.toEntity(entity);
     teamsValidator.validate(team);
-    return teamsMapper.toDto(teamsRepository.save(team));
+
+    TeamDto teamDto = teamsMapper.toDto(teamsRepository.save(team));
+
+    if (teamDto.getId() == null) {
+      throw new EntityValidateException(String.format(TEAM_NOT_CREATED, team.getName()));
+    }
+
+    return teamDto;
   }
 
   @Override
@@ -59,7 +66,6 @@ public class TeamsServiceImpl implements EntitiesService<TeamsListDto, Team, Tea
     }
 
     Team team = teamsMapper.toEntity(teamDto);
-    team.setId(id);
     teamsValidator.validate(team);
     return teamsMapper.toDto(teamsRepository.save(team));
   }

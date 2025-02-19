@@ -50,7 +50,7 @@ public class UsersController {
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity<UserDto> getUserById(@PathVariable UUID id) throws EntityNotFoundException {
+  public ResponseEntity<UserDto> getUserById(@PathVariable("id") UUID id) throws EntityNotFoundException {
     return new ResponseEntity<>(usersService.findById(id), HttpStatus.OK);
   }
 
@@ -60,12 +60,12 @@ public class UsersController {
   }
 
   @PutMapping("/{id}")
-  public ResponseEntity<UserDto> updateUser(@PathVariable UUID id, @RequestBody @Valid NewUserDto newUserDto) throws EntityNotFoundException, EntityValidateException {
+  public ResponseEntity<UserDto> updateUser(@PathVariable("id") UUID id, @RequestBody @Valid NewUserDto newUserDto) throws EntityNotFoundException, EntityValidateException {
     return new ResponseEntity<>(usersService.update(id, newUserDto), HttpStatus.OK);
   }
 
   @DeleteMapping("/{id}")
-  public ResponseEntity<UUID> deleteUser(@PathVariable UUID id) throws EntityNotFoundException {
+  public ResponseEntity<UUID> deleteUser(@PathVariable("id") UUID id) throws EntityNotFoundException {
     return new ResponseEntity<>(usersService.delete(id), HttpStatus.OK);
   }
 }

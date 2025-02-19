@@ -1,29 +1,25 @@
-package by.kabral.usersservice.model;
+package by.kabral.formsservice.model;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
 import java.util.UUID;
 
 @Entity
-@Table(name = "teams")
+@Table(name = "skills")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Team {
+public class Skill {
 
   @Id
   @Column(name = "id")
@@ -33,7 +29,6 @@ public class Team {
   @Column(name = "name")
   private String name;
 
-  @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-  @JoinColumn(name = "id")
-  private List<User> users;
+  @Column(name = "description")
+  private String description;
 }

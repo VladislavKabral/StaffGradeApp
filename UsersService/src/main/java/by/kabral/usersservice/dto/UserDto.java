@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 
 import java.util.UUID;
 
-import static by.kabral.usersservice.util.Constants.*;
+import static by.kabral.usersservice.util.Constant.*;
 import static by.kabral.usersservice.util.Message.*;
 import static by.kabral.usersservice.util.Regex.*;
 

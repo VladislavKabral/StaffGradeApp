@@ -22,6 +22,5 @@ public class PositionsValidator implements Validator<Position> {
     if ((exitingPosition.isPresent()) && (!exitingPosition.get().getId().equals(position.getId()))) {
       throw new EntityValidateException(String.format(POSITION_WITH_GIVEN_NAME_ALREADY_EXISTS, position.getName()));
     }
-
   }
 }

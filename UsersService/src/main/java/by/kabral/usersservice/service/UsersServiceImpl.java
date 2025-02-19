@@ -102,7 +102,7 @@ public class UsersServiceImpl implements EntitiesService<UsersListDto, User, Use
 
     UserDto userDto = usersMapper.toDto(usersRepository.save(user));
 
-    if (userDto == null) {
+    if (userDto.getId() == null) {
       throw new EntityValidateException(String.format(USER_NOT_CREATED, newUserDto.getEmail()));
     }
 
@@ -117,7 +117,6 @@ public class UsersServiceImpl implements EntitiesService<UsersListDto, User, Use
     }
 
     User user = usersMapper.toEntity(entity);
-    user.setId(id);
     usersValidator.validate(user);
     return usersMapper.toDto(usersRepository.save(user));
   }

@@ -33,7 +33,7 @@ public class TeamsController {
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity<TeamDto> getTeamById(@PathVariable UUID id) throws EntityNotFoundException {
+  public ResponseEntity<TeamDto> getTeamById(@PathVariable("id") UUID id) throws EntityNotFoundException {
     return new ResponseEntity<>(teamsService.findById(id), HttpStatus.OK);
   }
 
@@ -43,13 +43,13 @@ public class TeamsController {
   }
 
   @PutMapping("/{id}")
-  public ResponseEntity<TeamDto> updateTeam(@PathVariable UUID id,
+  public ResponseEntity<TeamDto> updateTeam(@PathVariable("id") UUID id,
                                             @RequestBody @Valid TeamDto teamDto) throws EntityNotFoundException, EntityValidateException {
     return new ResponseEntity<>(teamsService.update(id, teamDto), HttpStatus.OK);
   }
 
   @DeleteMapping("/{id}")
-  public ResponseEntity<UUID> deleteTeam(@PathVariable UUID id) throws EntityNotFoundException {
+  public ResponseEntity<UUID> deleteTeam(@PathVariable("id") UUID id) throws EntityNotFoundException {
     return new ResponseEntity<>(teamsService.delete(id), HttpStatus.OK);
   }
 }

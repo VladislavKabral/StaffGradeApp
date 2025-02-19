@@ -10,7 +10,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import static by.kabral.usersservice.util.Constants.*;
+import static by.kabral.usersservice.util.Constant.*;
 import static by.kabral.usersservice.util.Message.*;
 import static by.kabral.usersservice.util.Regex.*;
 

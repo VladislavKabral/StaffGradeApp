@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/FormsService/FormsService.iml" filepath="$PROJECT_DIR$/FormsService/FormsService.iml" />
       <module fileurl="file://$PROJECT_DIR$/UsersService/UsersService.iml" filepath="$PROJECT_DIR$/UsersService/UsersService.iml" />
     </modules>
   </component>
