@@ -6,8 +6,6 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-
 @Component
 @RequiredArgsConstructor
 public class FeedbacksMapper {
@@ -18,15 +16,5 @@ public class FeedbacksMapper {
     Feedback feedback = modelMapper.map(feedbackDto, Feedback.class);
     feedback.setSourceUserId(feedbackDto.getSourceUser().getId());
     return feedback;
-  }
-
-  public FeedbackDto toDto(Feedback feedback) {
-    return modelMapper.map(feedback, FeedbackDto.class);
-  }
-
-  public List<FeedbackDto> toListDto(List<Feedback> feedbacks) {
-    return feedbacks.stream()
-            .map(this::toDto)
-            .toList();
   }
 }

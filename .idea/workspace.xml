@@ -5,67 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3fea442a-58f2-45dc-a128-89fed2a9bee5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/client/FormsFeignClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/client/UsersFeignClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/config/AppConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/config/FeignClientConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/config/FeignClientErrorDecoder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/controller/FeedbacksController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/controller/PackagesController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/controller/advice/ExceptionApiController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/dto/ErrorResponseDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/dto/FeedbackDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/dto/FeedbacksListDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/dto/FormDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/dto/PackageDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/dto/PackagesListDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/dto/PackagesPageDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/dto/PositionDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/dto/QuestionDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/dto/ResponseDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/dto/SkillDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/dto/TeamDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/dto/UserDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/exception/EntityNotFoundException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/exception/EntityValidateException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/exception/ExternalServiceRequestException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/exception/ExternalServiceUnavailableException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/exception/InvalidRequestDataException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/mapper/FeedbacksMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/mapper/PackagesMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/mapper/ResponsesMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/model/Feedback.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/model/Package.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/model/Response.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/model/Status.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/repository/FeedbacksRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/repository/PackagesRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/repository/StatusesRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/service/EntitiesService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/service/FeedbacksServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/service/PackagesServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/util/Constant.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/util/Message.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/util/Regex.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/util/StatusName.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/util/validator/PackagesValidator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/util/validator/Validator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FormsService/src/main/java/by/kabral/formsservice/util/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/FormsService/src/main/java/by/kabral/formsservice/util/Message.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FormsService/src/test/java/by/kabral/formsservice/FormsServiceImplApplicationTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PackagesService/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/PackagesService/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/PackagesServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/PackagesServiceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PackagesService/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/PackagesService/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PackagesService/src/test/java/by/kabral/packagesservice/PackagesServiceApplicationTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/UsersService/src/main/java/by/kabral/usersservice/dto/UserDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/UsersService/src/main/java/by/kabral/usersservice/dto/UserDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UsersService/src/main/java/by/kabral/usersservice/repository/StatusRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/UsersService/src/main/java/by/kabral/usersservice/repository/StatusesRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UsersService/src/main/java/by/kabral/usersservice/service/TeamsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/UsersService/src/main/java/by/kabral/usersservice/service/TeamsServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UsersService/src/main/java/by/kabral/usersservice/service/UsersServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/UsersService/src/main/java/by/kabral/usersservice/service/UsersServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UsersService/src/main/java/by/kabral/usersservice/util/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/UsersService/src/main/java/by/kabral/usersservice/util/Message.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/mapper/FeedbacksMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/mapper/FeedbacksMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/mapper/ResponsesMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/mapper/ResponsesMapper.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -261,7 +202,7 @@
       <workItem from="1740053987645" duration="1888000" />
       <workItem from="1740056366922" duration="370000" />
       <workItem from="1740074791664" duration="1028000" />
-      <workItem from="1740115053609" duration="6283000" />
+      <workItem from="1740115053609" duration="6394000" />
     </task>
     <task id="LOCAL-00001" summary="Add liquibase config for services">
       <option name="closed" value="true" />
@@ -303,7 +244,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739975623141</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Add CRUD for the PackagesService">
+      <option name="closed" value="true" />
+      <created>1740121405627</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1740121405627</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -314,7 +263,8 @@
     <MESSAGE value="Add CRUD for UsersService" />
     <MESSAGE value="Add exception handling for the UserService" />
     <MESSAGE value="Add CRUD for the FormsService" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add CRUD for the FormsService" />
+    <MESSAGE value="Add CRUD for the PackagesService" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add CRUD for the PackagesService" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

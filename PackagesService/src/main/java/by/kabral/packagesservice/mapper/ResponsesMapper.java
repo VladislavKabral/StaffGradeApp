@@ -14,18 +14,8 @@ public class ResponsesMapper {
 
   private final ModelMapper modelMapper;
 
-  public Response toEntity(ResponseDto responseDto) {
-    return modelMapper.map(responseDto, Response.class);
-  }
-
   public ResponseDto toDto(Response response) {
     return modelMapper.map(response, ResponseDto.class);
-  }
-
-  public List<Response> toEntityList(List<ResponseDto> responsesDto) {
-    return responsesDto.stream()
-            .map(this::toEntity)
-            .toList();
   }
 
   public List<ResponseDto> toDtoList(List<Response> responses) {
