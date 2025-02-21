@@ -1,12 +1,12 @@
-package by.kabral.usersservice.repository;
+package by.kabral.packagesservice.repository;
 
-import by.kabral.usersservice.model.Status;
+import by.kabral.packagesservice.model.Status;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.UUID;
 
 @Repository
-public interface StatusRepository extends JpaRepository<Status, UUID> {
+public interface StatusesRepository extends JpaRepository<Status, UUID> {
   Status findByName(String name);
 }

@@ -9,7 +9,7 @@ import by.kabral.usersservice.exception.EntityValidateException;
 import by.kabral.usersservice.exception.InvalidRequestDataException;
 import by.kabral.usersservice.mapper.UsersMapper;
 import by.kabral.usersservice.model.User;
-import by.kabral.usersservice.repository.StatusRepository;
+import by.kabral.usersservice.repository.StatusesRepository;
 import by.kabral.usersservice.repository.UsersRepository;
 import by.kabral.usersservice.util.validator.UsersValidator;
 import lombok.RequiredArgsConstructor;
@@ -29,7 +29,7 @@ import static by.kabral.usersservice.util.StatusName.*;
 public class UsersServiceImpl implements EntitiesService<UsersListDto, User, UserDto, NewUserDto> {
 
   private final UsersRepository usersRepository;
-  private final StatusRepository statusRepository;
+  private final StatusesRepository statusRepository;
   private final UsersMapper usersMapper;
   private final UsersValidator usersValidator;
 
@@ -66,7 +66,7 @@ public class UsersServiceImpl implements EntitiesService<UsersListDto, User, Use
   @Transactional(readOnly = true)
   public User findEntity(UUID id) throws EntityNotFoundException {
     return usersRepository.findById(id)
-            .orElseThrow(() -> new EntityNotFoundException(id.toString()));
+            .orElseThrow(() -> new EntityNotFoundException(String.format(USER_NOT_FOUND, id)));
   }
 
   public UsersPageDto findUsersPage(int index, int count, String sortField) throws InvalidRequestDataException {

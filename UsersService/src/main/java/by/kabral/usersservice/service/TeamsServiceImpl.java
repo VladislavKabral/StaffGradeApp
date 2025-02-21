@@ -34,7 +34,7 @@ public class TeamsServiceImpl implements EntitiesService<TeamsListDto, Team, Tea
   @Transactional(readOnly = true)
   public Team findEntity(UUID id) throws EntityNotFoundException {
     return teamsRepository.findById(id)
-            .orElseThrow(() -> new EntityNotFoundException(TEAM_NOT_FOUND));
+            .orElseThrow(() -> new EntityNotFoundException(String.format(TEAM_NOT_FOUND, id)));
   }
 
   @Override

@@ -6,8 +6,8 @@ import lombok.experimental.UtilityClass;
 public class Message {
 
   public final String INVALID_PAGE_REQUEST = "The number of page and count of elements can't be less than zero.";
-  public final String USER_NOT_FOUND = "The user with id '%d' wasn't found.";
-  public final String TEAM_NOT_FOUND = "The team with id '%d' wasn't found.";
+  public final String USER_NOT_FOUND = "The user with id '%s' wasn't found.";
+  public final String TEAM_NOT_FOUND = "The team with id '%s' wasn't found.";
   public final String POSITION_NOT_FOUND = "The position with id '%d' wasn't found.";
   public final String USER_NOT_CREATED = "The user with email '%s' wasn't created.";
   public final String TEAM_NOT_CREATED = "The team with name '%s' wasn't created.";

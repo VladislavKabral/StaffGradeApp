@@ -1,9 +1,6 @@
 package by.kabral.usersservice.dto;
 
-import by.kabral.usersservice.model.Position;
 import by.kabral.usersservice.model.Status;
-import by.kabral.usersservice.model.Team;
-import by.kabral.usersservice.model.User;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;
@@ -41,11 +38,11 @@ public class UserDto {
   @NotEmpty(message = USER_EMAIL_IS_EMPTY)
   private String email;
 
-  private User manager;
+  private UserDto manager;
 
   private Status status;
 
-  private Position position;
+  private PositionDto position;
 
-  private Team team;
+  private TeamDto team;
 }
