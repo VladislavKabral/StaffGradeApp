@@ -5,8 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3fea442a-58f2-45dc-a128-89fed2a9bee5" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/mapper/FeedbacksMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/mapper/FeedbacksMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/mapper/ResponsesMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/mapper/ResponsesMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EurekaServer/.gitattributes" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EurekaServer/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EurekaServer/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EurekaServer/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EurekaServer/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EurekaServer/src/main/java/by/kabral/eurekaserver/EurekaServerApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EurekaServer/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FormsService/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/FormsService/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FormsService/src/main/java/by/kabral/formsservice/FormsServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/FormsService/src/main/java/by/kabral/formsservice/FormsServiceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PackagesService/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/PackagesService/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/PackagesServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/PackagesServiceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UsersService/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/UsersService/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UsersService/src/main/java/by/kabral/usersservice/UsersServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/UsersService/src/main/java/by/kabral/usersservice/UsersServiceApplication.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,57 +67,59 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.FormsService [clean,install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.FormsService [clean,package,install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.FormsService [clean,package].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.FormsService [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.FormsService [package].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.PackagesService [clean,install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.PackagesService [clean,package].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.StaffGradeApp [clean,build].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.StaffGradeApp [clean,install,-e].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.StaffGradeApp [clean,install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.StaffGradeApp [clean,package].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.StaffGradeApp [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.StaffGradeApp [idea:clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.UsersService [clean,package].executor&quot;: &quot;Run&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;Spring Boot.FormsServiceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.PackagesServiceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.UsersServiceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;model-crud-designing&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;21&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Asus/.m2/repository/org/projectlombok/lombok/1.18.36/lombok-1.18.36.jar&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.projectsettings.compiler.annotationProcessors&quot;,
-    &quot;settings.editor.splitter.proportion&quot;: &quot;0.26104417&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
+    "Maven.EurekaServer [clean,compile].executor": "Run",
+    "Maven.FormsService [clean,install].executor": "Run",
+    "Maven.FormsService [clean,package,install].executor": "Run",
+    "Maven.FormsService [clean,package].executor": "Run",
+    "Maven.FormsService [clean].executor": "Run",
+    "Maven.FormsService [package].executor": "Run",
+    "Maven.PackagesService [clean,install].executor": "Run",
+    "Maven.PackagesService [clean,package].executor": "Run",
+    "Maven.StaffGradeApp [clean,build].executor": "Run",
+    "Maven.StaffGradeApp [clean,install,-e].executor": "Run",
+    "Maven.StaffGradeApp [clean,install].executor": "Run",
+    "Maven.StaffGradeApp [clean,package].executor": "Run",
+    "Maven.StaffGradeApp [clean].executor": "Run",
+    "Maven.StaffGradeApp [idea:clean].executor": "Run",
+    "Maven.UsersService [clean,package].executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "Spring Boot.EurekaServerApplication.executor": "Run",
+    "Spring Boot.FormsServiceApplication.executor": "Run",
+    "Spring Boot.PackagesServiceApplication.executor": "Run",
+    "Spring Boot.UsersServiceApplication.executor": "Run",
+    "git-widget-placeholder": "model-crud-designing",
+    "jdk.selected.JAVA_MODULE": "21",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Asus/.m2/repository/org/projectlombok/lombok/1.18.36/lombok-1.18.36.jar",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "run.configurations.included.in.services": "true",
+    "settings.editor.selected.configurable": "reference.projectsettings.compiler.annotationProcessors",
+    "settings.editor.splitter.proportion": "0.26104417",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;postgresql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
     ],
-    &quot;com.intellij.ide.scratch.LRUPopupBuilder$1/&quot;: [
-      &quot;PostgreSQL&quot;
+    "com.intellij.ide.scratch.LRUPopupBuilder$1/": [
+      "PostgreSQL"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Projects\Staff_Grade\StaffGradeApp\PackagesService\src\main\java\by\kabral\packagesservice\config" />
@@ -139,6 +156,13 @@
     </option>
   </component>
   <component name="RunManager" selected="Spring Boot.FormsServiceApplication">
+    <configuration name="EurekaServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="EurekaServer" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="by.kabral.eurekaserver.EurekaServerApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="FormsServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="FormsService" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="by.kabral.formsservice.FormsServiceApplication" />
@@ -202,7 +226,7 @@
       <workItem from="1740053987645" duration="1888000" />
       <workItem from="1740056366922" duration="370000" />
       <workItem from="1740074791664" duration="1028000" />
-      <workItem from="1740115053609" duration="6394000" />
+      <workItem from="1740115053609" duration="9115000" />
     </task>
     <task id="LOCAL-00001" summary="Add liquibase config for services">
       <option name="closed" value="true" />
@@ -252,7 +276,15 @@
       <option name="project" value="LOCAL" />
       <updated>1740121405627</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Delete unnecessary code">
+      <option name="closed" value="true" />
+      <created>1740121527053</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1740121527053</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -264,7 +296,8 @@
     <MESSAGE value="Add exception handling for the UserService" />
     <MESSAGE value="Add CRUD for the FormsService" />
     <MESSAGE value="Add CRUD for the PackagesService" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add CRUD for the PackagesService" />
+    <MESSAGE value="Delete unnecessary code" />
+    <option name="LAST_COMMIT_MESSAGE" value="Delete unnecessary code" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

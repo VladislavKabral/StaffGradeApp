@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.4.1</version>
+        <version>3.2.7</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>by.kabral</groupId>
@@ -30,6 +30,7 @@
         <java.version>17</java.version>
         <modelmapper.version>3.1.1</modelmapper.version>
         <openfeign.version>4.1.0</openfeign.version>
+        <eureka-client.version>4.1.4</eureka-client.version>
     </properties>
     <dependencies>
         <dependency>
@@ -72,6 +73,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+            <version>${eureka-client.version}</version>
         </dependency>
     </dependencies>
 
