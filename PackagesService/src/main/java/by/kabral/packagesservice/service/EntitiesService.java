@@ -10,7 +10,7 @@ public interface EntitiesService<U, K, T> {
   U findAll();
   K findEntity(UUID id) throws EntityNotFoundException;
   T findById(UUID id) throws EntityNotFoundException;
-  T save(T entity) throws EntityValidateException;
+  T save(T entity) throws EntityValidateException, EntityNotFoundException;
   T update(UUID id, T entity) throws EntityNotFoundException, EntityValidateException;
   UUID delete(UUID id) throws EntityNotFoundException;
 }

@@ -3,13 +3,14 @@ package by.kabral.packagesservice.service;
 import by.kabral.packagesservice.client.UsersFeignClient;
 import by.kabral.packagesservice.dto.FeedbackDto;
 import by.kabral.packagesservice.dto.FeedbacksListDto;
+import by.kabral.packagesservice.dto.PackageDto;
 import by.kabral.packagesservice.dto.UserDto;
 import by.kabral.packagesservice.exception.EntityNotFoundException;
 import by.kabral.packagesservice.exception.EntityValidateException;
 import by.kabral.packagesservice.mapper.FeedbacksMapper;
-import by.kabral.packagesservice.mapper.PackagesMapper;
 import by.kabral.packagesservice.mapper.ResponsesMapper;
 import by.kabral.packagesservice.model.Feedback;
+import by.kabral.packagesservice.model.Response;
 import by.kabral.packagesservice.repository.FeedbacksRepository;
 import by.kabral.packagesservice.repository.StatusesRepository;
 import lombok.RequiredArgsConstructor;
@@ -29,8 +30,8 @@ public class FeedbacksServiceImpl implements EntitiesService<FeedbacksListDto, F
 
   private final FeedbacksRepository feedbacksRepository;
   private final StatusesRepository statusesRepository;
+  private final PackagesServiceImpl packagesService;
   private final FeedbacksMapper feedbacksMapper;
-  private final PackagesMapper packagesMapper;
   private final ResponsesMapper responsesMapper;
   private final UsersFeignClient usersFeignClient;
 
@@ -40,7 +41,13 @@ public class FeedbacksServiceImpl implements EntitiesService<FeedbacksListDto, F
     List<Feedback> feedbacks = feedbacksRepository.findAll();
 
     List<FeedbackDto> feedbacksDto = feedbacks.stream()
-            .map(this::fillFeedback)
+            .map(feedback -> {
+              try {
+                return fillFeedback(feedback);
+              } catch (EntityNotFoundException e) {
+                throw new RuntimeException(e);
+              }
+            })
             .toList();
 
     return FeedbacksListDto.builder()
@@ -61,12 +68,13 @@ public class FeedbacksServiceImpl implements EntitiesService<FeedbacksListDto, F
     return fillFeedback(findEntity(id));
   }
 
-  private FeedbackDto fillFeedback(Feedback feedback) {
+  private FeedbackDto fillFeedback(Feedback feedback) throws EntityNotFoundException {
     UserDto sourceUser = usersFeignClient.getUserById(feedback.getSourceUserId()).getBody();
+    PackageDto thePackage = packagesService.findById(feedback.getThePackage().getId());
 
     return FeedbackDto.builder()
             .id(feedback.getId())
-            .thePackage(packagesMapper.toDto(feedback.getThePackage()))
+            .thePackage(thePackage)
             .sourceUser(sourceUser)
             .status(feedback.getStatus())
             .completedAt(feedback.getCompletedAt())
@@ -76,7 +84,7 @@ public class FeedbacksServiceImpl implements EntitiesService<FeedbacksListDto, F
 
   @Override
   @Transactional
-  public FeedbackDto save(FeedbackDto entity) throws EntityValidateException {
+  public FeedbackDto save(FeedbackDto entity) throws EntityValidateException, EntityNotFoundException {
     Feedback feedback = feedbacksMapper.toEntity(entity);
     feedback.setStatus(statusesRepository.findByName(IN_PROGRESS));
 
@@ -96,8 +104,12 @@ public class FeedbacksServiceImpl implements EntitiesService<FeedbacksListDto, F
     }
 
     Feedback feedback = feedbacksMapper.toEntity(entity);
+    feedback.setId(id);
     feedback.setStatus(statusesRepository.findByName(COMPLETED));
     feedback.setCompletedAt(LocalDate.now());
+    List<Response> responses = responsesMapper.toEntityList(entity.getResponses());
+    responses.forEach(response -> response.setFeedback(feedback));
+    feedback.setResponses(responses);
 
     return fillFeedback(feedbacksRepository.save(feedback));
   }
@@ -111,6 +123,9 @@ public class FeedbacksServiceImpl implements EntitiesService<FeedbacksListDto, F
 
     Feedback feedback = feedbacksMapper.toEntity(entity);
     feedback.setSourceUserId(entity.getSourceUser().getId());
+    List<Response> responses = responsesMapper.toEntityList(entity.getResponses());
+    responses.forEach(response -> response.setFeedback(feedback));
+    feedback.setResponses(responses);
 
     return fillFeedback(feedbacksRepository.save(feedback));
   }

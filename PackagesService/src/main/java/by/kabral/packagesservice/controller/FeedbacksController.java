@@ -38,7 +38,7 @@ public class FeedbacksController {
   }
 
   @PostMapping
-  public ResponseEntity<FeedbackDto> save(@RequestBody @Valid FeedbackDto feedbackDto) throws EntityValidateException {
+  public ResponseEntity<FeedbackDto> save(@RequestBody @Valid FeedbackDto feedbackDto) throws EntityValidateException, EntityNotFoundException {
     return new ResponseEntity<>(feedbacksService.save(feedbackDto), HttpStatus.CREATED);
   }
 

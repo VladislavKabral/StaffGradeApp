@@ -44,7 +44,6 @@ public class Feedback {
   @Column(name = "completed_at")
   private LocalDate completedAt;
 
-  @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-  @JoinColumn(name = "id")
+  @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "feedback")
   private List<Response> responses;
 }

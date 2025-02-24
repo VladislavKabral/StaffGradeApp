@@ -33,7 +33,8 @@ public class ExceptionApiController {
           EntityValidateException.class,
           HttpMessageNotReadableException.class,
           UnsatisfiedServletRequestParameterException.class,
-          PropertyReferenceException.class
+          PropertyReferenceException.class,
+          RuntimeException.class
   })
   public ResponseEntity<ErrorResponseDto> defaultMessageExceptionHandler(Exception exception) {
     return ResponseEntity
