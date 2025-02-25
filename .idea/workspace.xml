@@ -5,14 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3fea442a-58f2-45dc-a128-89fed2a9bee5" name="Changes" comment="Fix completing feedbacks">
+      <change afterPath="$PROJECT_DIR$/ApiGateway/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ApiGateway/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ApiGateway/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ApiGateway/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ApiGateway/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ApiGateway/src/main/java/by/kabral/apigateway/ApiGatewayApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ApiGateway/src/main/java/by/kabral/apigateway/config/AppConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ApiGateway/src/main/java/by/kabral/apigateway/controller/FallbackController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ApiGateway/src/main/java/by/kabral/apigateway/dto/ErrorResponseDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ApiGateway/src/main/java/by/kabral/apigateway/util/Message.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ApiGateway/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ApiGateway/src/test/java/by/kabral/apigateway/ApiGatewayApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/controller/FeedbacksController.java" beforeDir="false" afterPath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/controller/FeedbacksController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/controller/advice/ExceptionApiController.java" beforeDir="false" afterPath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/controller/advice/ExceptionApiController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/mapper/ResponsesMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/mapper/ResponsesMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/model/Feedback.java" beforeDir="false" afterPath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/model/Feedback.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/service/EntitiesService.java" beforeDir="false" afterPath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/service/EntitiesService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/service/FeedbacksServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/service/FeedbacksServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/util/Regex.java" beforeDir="false" afterPath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/util/Regex.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FormsService/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/FormsService/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FormsService/src/main/java/by/kabral/formsservice/service/FormsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/FormsService/src/main/java/by/kabral/formsservice/service/FormsServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,11 +91,12 @@
     "RequestMappingsPanelWidth0": "75",
     "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "Spring Boot.ApiGatewayApplication.executor": "Run",
     "Spring Boot.EurekaServerApplication.executor": "Run",
     "Spring Boot.FormsServiceApplication.executor": "Run",
     "Spring Boot.PackagesServiceApplication.executor": "Run",
     "Spring Boot.UsersServiceApplication.executor": "Run",
-    "git-widget-placeholder": "model-crud-designing",
+    "git-widget-placeholder": "api-gateway-configuration",
     "jdk.selected.JAVA_MODULE": "21",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/Asus/.m2/repository/org/projectlombok/lombok/1.18.36/lombok-1.18.36.jar",
@@ -150,6 +161,13 @@
     </option>
   </component>
   <component name="RunManager" selected="Spring Boot.FormsServiceApplication">
+    <configuration name="ApiGatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="ApiGateway" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="by.kabral.apigateway.ApiGatewayApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="EurekaServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="EurekaServer" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="by.kabral.eurekaserver.EurekaServerApplication" />
@@ -222,6 +240,8 @@
       <workItem from="1740074791664" duration="1028000" />
       <workItem from="1740115053609" duration="9202000" />
       <workItem from="1740374486211" duration="10648000" />
+      <workItem from="1740420555638" duration="148000" />
+      <workItem from="1740471800399" duration="7129000" />
     </task>
     <task id="LOCAL-00001" summary="Add liquibase config for services">
       <option name="closed" value="true" />
