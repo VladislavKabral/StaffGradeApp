@@ -42,7 +42,11 @@ public class UsersServiceImpl implements EntitiesService<UsersListDto, User, Use
   }
 
   @Transactional(readOnly = true)
-  public UsersListDto findUsersByStatus(String status) {
+  public UsersListDto findUsersByStatus(String status) throws InvalidRequestDataException {
+    if (!STATUS_NAMES.contains(status)) {
+      throw new InvalidRequestDataException(String.format(UNKNOWN_USER_STATUS_NAME, status));
+    }
+
     List<User> users;
 
     if (status.equals(NOT_FIRED)) {
@@ -69,6 +73,7 @@ public class UsersServiceImpl implements EntitiesService<UsersListDto, User, Use
             .orElseThrow(() -> new EntityNotFoundException(String.format(USER_NOT_FOUND, id)));
   }
 
+  @Transactional(readOnly = true)
   public UsersPageDto findUsersPage(int index, int count, String sortField) throws InvalidRequestDataException {
     if ((index <= 0) || (count <= 0)) {
       throw new InvalidRequestDataException(INVALID_PAGE_REQUEST);

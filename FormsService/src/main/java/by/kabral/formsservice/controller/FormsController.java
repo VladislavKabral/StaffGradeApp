@@ -2,9 +2,11 @@ package by.kabral.formsservice.controller;
 
 import by.kabral.formsservice.dto.FormDto;
 import by.kabral.formsservice.dto.FormsListDto;
+import by.kabral.formsservice.dto.QuestionIdsListDto;
 import by.kabral.formsservice.exception.EntityNotFoundException;
 import by.kabral.formsservice.exception.EntityValidateException;
 import by.kabral.formsservice.service.FormsServiceImpl;
+import by.kabral.formsservice.service.QuestionsServiceImpl;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -26,6 +28,7 @@ import java.util.UUID;
 public class FormsController {
 
   private final FormsServiceImpl formsService;
+  private final QuestionsServiceImpl questionsService;
 
   @GetMapping
   public ResponseEntity<FormsListDto> getAllForms() {
@@ -35,6 +38,11 @@ public class FormsController {
   @GetMapping("/{id}")
   public ResponseEntity<FormDto> getFormById(@PathVariable("id") UUID id) throws EntityNotFoundException {
     return new ResponseEntity<>(formsService.findById(id), HttpStatus.OK);
+  }
+
+  @PostMapping("/questions/exists")
+  public ResponseEntity<Boolean> checkExists(@RequestBody QuestionIdsListDto questionIdsListDto) throws EntityNotFoundException {
+    return new ResponseEntity<>(questionsService.existsEntities(questionIdsListDto.getQuestionIds()), HttpStatus.OK);
   }
 
   @PostMapping

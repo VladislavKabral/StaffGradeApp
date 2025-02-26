@@ -6,6 +6,9 @@ import by.kabral.packagesservice.exception.EntityValidateException;
 import by.kabral.packagesservice.exception.ExternalServiceRequestException;
 import by.kabral.packagesservice.exception.ExternalServiceUnavailableException;
 import by.kabral.packagesservice.exception.InvalidRequestDataException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import feign.FeignException;
+import lombok.SneakyThrows;
 import org.springframework.data.mapping.PropertyReferenceException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -41,6 +44,20 @@ public class ExceptionApiController {
             .status(HttpStatus.BAD_REQUEST)
             .body(ErrorResponseDto.builder()
                     .message(exception.getMessage())
+                    .timestamp(ZonedDateTime.now(ZoneId.of("UTC")).toLocalDateTime())
+                    .build());
+  }
+
+  @SneakyThrows
+  @ExceptionHandler(FeignException.class)
+  public ResponseEntity<ErrorResponseDto> feignExceptionHandler(FeignException exception) {
+    ObjectMapper mapper = new ObjectMapper();
+    String message = mapper.readTree(exception.contentUTF8()).get("message").asText();
+
+    return ResponseEntity
+            .status(HttpStatus.BAD_REQUEST)
+            .body(ErrorResponseDto.builder()
+                    .message(message)
                     .timestamp(ZonedDateTime.now(ZoneId.of("UTC")).toLocalDateTime())
                     .build());
   }

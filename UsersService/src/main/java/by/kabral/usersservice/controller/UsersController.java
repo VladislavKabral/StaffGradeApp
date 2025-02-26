@@ -38,7 +38,7 @@ public class UsersController {
   }
 
   @GetMapping(params = {"status"})
-  public ResponseEntity<UsersListDto> getUsersByStatus(@RequestParam(value = "status") String status) {
+  public ResponseEntity<UsersListDto> getUsersByStatus(@RequestParam(value = "status") String status) throws InvalidRequestDataException {
     return new ResponseEntity<>(usersService.findUsersByStatus(status), HttpStatus.OK);
   }
 

@@ -1,9 +1,11 @@
 package by.kabral.packagesservice.service;
 
+import by.kabral.packagesservice.client.FormsFeignClient;
 import by.kabral.packagesservice.client.UsersFeignClient;
 import by.kabral.packagesservice.dto.FeedbackDto;
 import by.kabral.packagesservice.dto.FeedbacksListDto;
 import by.kabral.packagesservice.dto.PackageDto;
+import by.kabral.packagesservice.dto.QuestionIdsListDto;
 import by.kabral.packagesservice.dto.UserDto;
 import by.kabral.packagesservice.exception.EntityNotFoundException;
 import by.kabral.packagesservice.exception.EntityValidateException;
@@ -13,11 +15,13 @@ import by.kabral.packagesservice.model.Feedback;
 import by.kabral.packagesservice.model.Response;
 import by.kabral.packagesservice.repository.FeedbacksRepository;
 import by.kabral.packagesservice.repository.StatusesRepository;
+import by.kabral.packagesservice.util.validator.FeedbacksValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -34,6 +38,8 @@ public class FeedbacksServiceImpl implements EntitiesService<FeedbacksListDto, F
   private final FeedbacksMapper feedbacksMapper;
   private final ResponsesMapper responsesMapper;
   private final UsersFeignClient usersFeignClient;
+  private final FormsFeignClient formsFeignClient;
+  private final FeedbacksValidator feedbacksValidator;
 
   @Override
   @Transactional(readOnly = true)
@@ -86,6 +92,7 @@ public class FeedbacksServiceImpl implements EntitiesService<FeedbacksListDto, F
   @Transactional
   public FeedbackDto save(FeedbackDto entity) throws EntityValidateException, EntityNotFoundException {
     Feedback feedback = feedbacksMapper.toEntity(entity);
+    feedbacksValidator.validate(feedback);
     feedback.setStatus(statusesRepository.findByName(IN_PROGRESS));
 
     Feedback savedFeedback = feedbacksRepository.save(feedback);
@@ -98,16 +105,21 @@ public class FeedbacksServiceImpl implements EntitiesService<FeedbacksListDto, F
   }
 
   @Transactional
-  public FeedbackDto complete(UUID id, FeedbackDto entity) throws EntityNotFoundException {
+  public FeedbackDto complete(UUID id, FeedbackDto entity) throws EntityNotFoundException, EntityValidateException {
     if (!feedbacksRepository.existsById(id)) {
       throw new EntityNotFoundException(String.format(FEEDBACK_NOT_FOUND, id));
     }
 
     Feedback feedback = feedbacksMapper.toEntity(entity);
+    feedbacksValidator.validate(feedback);
     feedback.setId(id);
+    fillFeedback(feedback);
     feedback.setStatus(statusesRepository.findByName(COMPLETED));
     feedback.setCompletedAt(LocalDate.now());
     List<Response> responses = responsesMapper.toEntityList(entity.getResponses());
+    formsFeignClient.checkExists(QuestionIdsListDto.builder()
+            .questionIds(getQuestionsIds(responses))
+            .build());
     responses.forEach(response -> response.setFeedback(feedback));
     feedback.setResponses(responses);
 
@@ -116,14 +128,18 @@ public class FeedbacksServiceImpl implements EntitiesService<FeedbacksListDto, F
 
   @Override
   @Transactional
-  public FeedbackDto update(UUID id, FeedbackDto entity) throws EntityNotFoundException {
+  public FeedbackDto update(UUID id, FeedbackDto entity) throws EntityNotFoundException, EntityValidateException {
     if (!feedbacksRepository.existsById(id)) {
       throw new EntityNotFoundException(String.format(FEEDBACK_NOT_FOUND, id));
     }
 
     Feedback feedback = feedbacksMapper.toEntity(entity);
+    feedbacksValidator.validate(feedback);
     feedback.setSourceUserId(entity.getSourceUser().getId());
     List<Response> responses = responsesMapper.toEntityList(entity.getResponses());
+    formsFeignClient.checkExists(QuestionIdsListDto.builder()
+            .questionIds(getQuestionsIds(responses))
+            .build());
     responses.forEach(response -> response.setFeedback(feedback));
     feedback.setResponses(responses);
 
@@ -142,5 +158,11 @@ public class FeedbacksServiceImpl implements EntitiesService<FeedbacksListDto, F
     feedbacksRepository.save(feedback);
 
     return id;
+  }
+
+  private List<UUID> getQuestionsIds(List<Response> responses) {
+    List<UUID> questionsIds = new ArrayList<>();
+    responses.forEach(response -> questionsIds.add(response.getQuestionId()));
+    return questionsIds;
   }
 }

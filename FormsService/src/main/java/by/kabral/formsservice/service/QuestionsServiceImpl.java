@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.UUID;
 
 import static by.kabral.formsservice.util.Message.*;
@@ -35,6 +36,17 @@ public class QuestionsServiceImpl implements EntitiesService<QuestionsListDto, Q
   public Question findEntity(UUID id) throws EntityNotFoundException {
     return questionsRepository.findById(id)
             .orElseThrow(() -> new EntityNotFoundException(String.format(QUESTION_NOT_FOUND, id)));
+  }
+
+  @Transactional(readOnly = true)
+  public Boolean existsEntities(List<UUID> ids) throws EntityNotFoundException {
+    for (UUID id : ids) {
+      if (!questionsRepository.existsById(id)) {
+        throw new EntityNotFoundException(String.format(QUESTION_NOT_FOUND, id));
+      }
+    }
+
+    return true;
   }
 
   @Override

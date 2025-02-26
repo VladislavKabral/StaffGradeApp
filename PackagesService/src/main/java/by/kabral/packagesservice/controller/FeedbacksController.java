@@ -44,13 +44,13 @@ public class FeedbacksController {
 
   @PutMapping("/{id}")
   public ResponseEntity<FeedbackDto> update(@PathVariable("id") UUID id,
-                                            @RequestBody @Valid FeedbackDto feedbackDto) throws EntityNotFoundException {
+                                            @RequestBody @Valid FeedbackDto feedbackDto) throws EntityNotFoundException, EntityValidateException {
     return new ResponseEntity<>(feedbacksService.update(id, feedbackDto), HttpStatus.OK);
   }
 
   @PutMapping("/{id}/complete")
   public ResponseEntity<FeedbackDto> complete(@PathVariable("id") UUID id,
-                                              @RequestBody @Valid FeedbackDto feedbackDto) throws EntityNotFoundException {
+                                              @RequestBody @Valid FeedbackDto feedbackDto) throws EntityNotFoundException, EntityValidateException {
     return new ResponseEntity<>(feedbacksService.complete(id, feedbackDto), HttpStatus.OK);
   }
 

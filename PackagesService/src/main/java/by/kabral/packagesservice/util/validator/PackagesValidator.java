@@ -18,6 +18,14 @@ public class PackagesValidator implements Validator<Package> {
 
   @Override
   public void validate(Package entity) throws EntityValidateException {
+    if (entity.getTargetUserId() == null) {
+      throw new EntityValidateException(TARGET_USER_ID_CANNOT_BE_NULL);
+    }
+
+    if (entity.getFormId() == null) {
+      throw new EntityValidateException(FORM_ID_IS_NULL);
+    }
+
     Optional<Package> exitingPackage = packagesRepository.findByName(entity.getName());
     if ((exitingPackage.isPresent()) && (!exitingPackage.get().getId().equals(entity.getId()))) {
       throw new EntityValidateException(String.format(PACKAGE_ALREADY_EXISTS, entity.getName()));

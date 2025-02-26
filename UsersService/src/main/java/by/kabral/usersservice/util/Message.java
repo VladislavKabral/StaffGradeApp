@@ -37,7 +37,6 @@ public class Message {
   public final String RECEIVED_PAGE_PARAMETERS_ARE_INVALID = "Invalid page parameters were received";
   public final String FIND_USERS = "Finding users from the given page";
   public final String FIND_USER_BY_ID = "Finding the user with id '%d'";
-  public final String FIND_FREE_USERS = "Finding free users";
   public final String SAVE_NEW_USER = "Saving a new user";
   public final String USER_WAS_SAVED = "The user '%s' '%s' was saved.";
   public final String UPDATE_USER = "Updating the user with id '%d'";
@@ -47,5 +46,6 @@ public class Message {
   public final String FIND_USER_PROFILE = "Finding a profile of the user with id '%d'";
   public final String CREATING_USER_ALREADY_EXISTS = "Creating user already exists (existing parameter is '%s')";
   public final String EXTERNAL_SERVICE_IS_UNAVAILABLE = "Cannot connect to external service.";
+  public final String UNKNOWN_USER_STATUS_NAME = "'%s' is unknown status";
 
 }
