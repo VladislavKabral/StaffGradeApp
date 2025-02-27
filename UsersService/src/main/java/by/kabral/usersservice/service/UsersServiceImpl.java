@@ -12,6 +12,8 @@ import by.kabral.usersservice.model.User;
 import by.kabral.usersservice.repository.StatusesRepository;
 import by.kabral.usersservice.repository.UsersRepository;
 import by.kabral.usersservice.util.validator.UsersValidator;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.retry.annotation.Retry;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -100,6 +102,8 @@ public class UsersServiceImpl implements EntitiesService<UsersListDto, User, Use
 
   @Override
   @Transactional
+  @CircuitBreaker(name = "saveUserCircuitBreaker")
+  @Retry(name = "saveUserRetry")
   public UserDto save(NewUserDto newUserDto) throws EntityValidateException {
     User user = usersMapper.toEntity(newUserDto);
     usersValidator.validate(user);
@@ -116,6 +120,8 @@ public class UsersServiceImpl implements EntitiesService<UsersListDto, User, Use
 
   @Override
   @Transactional
+  @CircuitBreaker(name = "updateUserCircuitBreaker")
+  @Retry(name = "updateUserRetry")
   public UserDto update(UUID id, NewUserDto entity) throws EntityNotFoundException, EntityValidateException {
     if (!usersRepository.existsById(id)) {
       throw new EntityNotFoundException(USER_NOT_FOUND);
@@ -128,6 +134,8 @@ public class UsersServiceImpl implements EntitiesService<UsersListDto, User, Use
 
   @Override
   @Transactional
+  @CircuitBreaker(name = "deleteUserCircuitBreaker")
+  @Retry(name = "deleteUserRetry")
   public UUID delete(UUID id) throws EntityNotFoundException {
     if (!usersRepository.existsById(id)) {
       throw new EntityNotFoundException(USER_NOT_FOUND);

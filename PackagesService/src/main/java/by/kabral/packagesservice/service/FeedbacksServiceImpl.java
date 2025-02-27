@@ -16,6 +16,8 @@ import by.kabral.packagesservice.model.Response;
 import by.kabral.packagesservice.repository.FeedbacksRepository;
 import by.kabral.packagesservice.repository.StatusesRepository;
 import by.kabral.packagesservice.util.validator.FeedbacksValidator;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.retry.annotation.Retry;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -90,6 +92,8 @@ public class FeedbacksServiceImpl implements EntitiesService<FeedbacksListDto, F
 
   @Override
   @Transactional
+  @CircuitBreaker(name = "saveFeedbackCircuitBreaker")
+  @Retry(name = "saveFeedbackRetry")
   public FeedbackDto save(FeedbackDto entity) throws EntityValidateException, EntityNotFoundException {
     Feedback feedback = feedbacksMapper.toEntity(entity);
     feedbacksValidator.validate(feedback);
@@ -105,6 +109,8 @@ public class FeedbacksServiceImpl implements EntitiesService<FeedbacksListDto, F
   }
 
   @Transactional
+  @CircuitBreaker(name = "completeFeedbackCircuitBreaker")
+  @Retry(name = "completeFeedbackRetry")
   public FeedbackDto complete(UUID id, FeedbackDto entity) throws EntityNotFoundException, EntityValidateException {
     if (!feedbacksRepository.existsById(id)) {
       throw new EntityNotFoundException(String.format(FEEDBACK_NOT_FOUND, id));
@@ -128,6 +134,8 @@ public class FeedbacksServiceImpl implements EntitiesService<FeedbacksListDto, F
 
   @Override
   @Transactional
+  @CircuitBreaker(name = "updateFeedbackCircuitBreaker")
+  @Retry(name = "updateFeedbackRetry")
   public FeedbackDto update(UUID id, FeedbackDto entity) throws EntityNotFoundException, EntityValidateException {
     if (!feedbacksRepository.existsById(id)) {
       throw new EntityNotFoundException(String.format(FEEDBACK_NOT_FOUND, id));
@@ -148,6 +156,8 @@ public class FeedbacksServiceImpl implements EntitiesService<FeedbacksListDto, F
 
   @Override
   @Transactional
+  @CircuitBreaker(name = "deleteFeedbackCircuitBreaker")
+  @Retry(name = "deleteFeedbackRetry")
   public UUID delete(UUID id) throws EntityNotFoundException {
     if (!feedbacksRepository.existsById(id)) {
       throw new EntityNotFoundException(String.format(FEEDBACK_NOT_FOUND, id));

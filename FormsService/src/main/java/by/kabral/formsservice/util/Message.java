@@ -29,4 +29,5 @@ public class Message {
   public final String EXTERNAL_SERVICE_IS_UNAVAILABLE = "Cannot connect to external service.";
   public final String METHOD_NOT_ALLOWED = "%s for this endpoint.";
   public final String REQUEST_PARAMETER_IS_INVALID = "Failed to convert value in request parameter.";
+  public final String REQUEST_CANNOT_BE_PERFORMED = "The request cannot be performed.";
 }

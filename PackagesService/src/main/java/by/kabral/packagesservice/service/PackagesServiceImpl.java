@@ -12,6 +12,8 @@ import by.kabral.packagesservice.mapper.PackagesMapper;
 import by.kabral.packagesservice.model.Package;
 import by.kabral.packagesservice.repository.PackagesRepository;
 import by.kabral.packagesservice.util.validator.PackagesValidator;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.retry.annotation.Retry;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -75,6 +77,8 @@ public class PackagesServiceImpl implements EntitiesService<PackagesListDto, Pac
 
   @Override
   @Transactional
+  @CircuitBreaker(name = "savePackageCircuitBreaker")
+  @Retry(name = "savePackageRetry")
   public PackageDto save(PackageDto entity) throws EntityValidateException {
     Package thePackage = packagesMapper.toEntity(entity);
     thePackage.setCreatedAt(LocalDate.now());
@@ -92,6 +96,8 @@ public class PackagesServiceImpl implements EntitiesService<PackagesListDto, Pac
 
   @Override
   @Transactional
+  @CircuitBreaker(name = "updatePackageCircuitBreaker")
+  @Retry(name = "updatePackageRetry")
   public PackageDto update(UUID id, PackageDto entity) throws EntityNotFoundException, EntityValidateException {
     if (!packagesRepository.existsById(id)) {
       throw new EntityNotFoundException(String.format(PACKAGE_NOT_FOUND, id));
@@ -105,6 +111,8 @@ public class PackagesServiceImpl implements EntitiesService<PackagesListDto, Pac
 
   @Override
   @Transactional
+  @CircuitBreaker(name = "deletePackageCircuitBreaker")
+  @Retry(name = "deletePackageRetry")
   public UUID delete(UUID id) throws EntityNotFoundException {
     if (!packagesRepository.existsById(id)) {
       throw new EntityNotFoundException(String.format(PACKAGE_NOT_FOUND, id));

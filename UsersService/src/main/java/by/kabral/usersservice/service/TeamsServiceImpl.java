@@ -8,6 +8,8 @@ import by.kabral.usersservice.mapper.TeamsMapper;
 import by.kabral.usersservice.model.Team;
 import by.kabral.usersservice.repository.TeamsRepository;
 import by.kabral.usersservice.util.validator.TeamsValidator;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.retry.annotation.Retry;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -45,6 +47,8 @@ public class TeamsServiceImpl implements EntitiesService<TeamsListDto, Team, Tea
 
   @Override
   @Transactional
+  @CircuitBreaker(name = "saveTeamCircuitBreaker")
+  @Retry(name = "saveTeamRetry")
   public TeamDto save(TeamDto entity) throws EntityValidateException {
     Team team = teamsMapper.toEntity(entity);
     teamsValidator.validate(team);
@@ -60,6 +64,8 @@ public class TeamsServiceImpl implements EntitiesService<TeamsListDto, Team, Tea
 
   @Override
   @Transactional
+  @CircuitBreaker(name = "updateTeamCircuitBreaker")
+  @Retry(name = "updateTeamRetry")
   public TeamDto update(UUID id, TeamDto teamDto) throws EntityNotFoundException, EntityValidateException {
     if (!teamsRepository.existsById(id)) {
       throw new EntityNotFoundException(TEAM_NOT_FOUND);
@@ -72,6 +78,8 @@ public class TeamsServiceImpl implements EntitiesService<TeamsListDto, Team, Tea
 
   @Override
   @Transactional
+  @CircuitBreaker(name = "deleteTeamCircuitBreaker")
+  @Retry(name = "deleteTeamRetry")
   public UUID delete(UUID id) throws EntityNotFoundException {
     if (!teamsRepository.existsById(id)) {
       throw new EntityNotFoundException(TEAM_NOT_FOUND);

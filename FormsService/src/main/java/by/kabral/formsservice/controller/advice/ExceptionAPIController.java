@@ -6,6 +6,7 @@ import by.kabral.formsservice.exception.EntityValidateException;
 import by.kabral.formsservice.exception.ExternalServiceRequestException;
 import by.kabral.formsservice.exception.ExternalServiceUnavailableException;
 import by.kabral.formsservice.exception.InvalidRequestDataException;
+import io.github.resilience4j.circuitbreaker.CallNotPermittedException;
 import org.springframework.data.mapping.PropertyReferenceException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -100,5 +101,15 @@ public class ExceptionAPIController {
                     .timestamp(ZonedDateTime.now(ZoneId.of("UTC")).toLocalDateTime())
                     .build());
 
+  }
+
+  @ExceptionHandler(CallNotPermittedException.class)
+  public ResponseEntity<ErrorResponseDto> callNotPermittedException() {
+    return ResponseEntity
+            .status(HttpStatus.SERVICE_UNAVAILABLE)
+            .body(ErrorResponseDto.builder()
+                    .message(REQUEST_CANNOT_BE_PERFORMED)
+                    .timestamp(ZonedDateTime.now(ZoneId.of("UTC")).toLocalDateTime())
+                    .build());
   }
 }

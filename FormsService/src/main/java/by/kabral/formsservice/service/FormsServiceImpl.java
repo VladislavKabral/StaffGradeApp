@@ -8,6 +8,8 @@ import by.kabral.formsservice.mapper.FormsMapper;
 import by.kabral.formsservice.model.Form;
 import by.kabral.formsservice.repository.FormsRepository;
 import by.kabral.formsservice.util.validator.FormsValidator;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.retry.annotation.Retry;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -47,6 +49,8 @@ public class FormsServiceImpl implements EntitiesService<FormsListDto, Form, For
 
   @Override
   @Transactional
+  @CircuitBreaker(name = "saveFormCircuitBreaker")
+  @Retry(name = "saveFormRetry")
   public FormDto save(FormDto entity) throws EntityValidateException {
     Form form = formsMapper.toEntity(entity);
     formsValidator.validate(form);
@@ -61,6 +65,8 @@ public class FormsServiceImpl implements EntitiesService<FormsListDto, Form, For
 
   @Override
   @Transactional
+  @CircuitBreaker(name = "updateFormCircuitBreaker")
+  @Retry(name = "updateFormRetry")
   public FormDto update(UUID id, FormDto entity) throws EntityNotFoundException, EntityValidateException {
     if (!formsRepository.existsById(id)) {
       throw new EntityNotFoundException(String.format(FORM_NOT_FOUND, id));
@@ -74,6 +80,8 @@ public class FormsServiceImpl implements EntitiesService<FormsListDto, Form, For
 
   @Override
   @Transactional
+  @CircuitBreaker(name = "deleteFormCircuitBreaker")
+  @Retry(name = "deleteFormRetry")
   public UUID delete(UUID id) throws EntityNotFoundException {
     if (!formsRepository.existsById(id)) {
       throw new EntityNotFoundException(String.format(FORM_NOT_FOUND, id));

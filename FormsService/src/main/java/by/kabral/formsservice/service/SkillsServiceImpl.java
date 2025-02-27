@@ -8,6 +8,8 @@ import by.kabral.formsservice.mapper.SkillsMapper;
 import by.kabral.formsservice.model.Skill;
 import by.kabral.formsservice.repository.SkillsRepository;
 import by.kabral.formsservice.util.validator.SkillsValidator;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.retry.annotation.Retry;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -47,6 +49,8 @@ public class SkillsServiceImpl implements EntitiesService<SkillsListDto, Skill, 
 
   @Override
   @Transactional
+  @CircuitBreaker(name = "saveSkillCircuitBreaker")
+  @Retry(name = "saveSkillRetry")
   public SkillDto save(SkillDto entity) throws EntityValidateException {
     Skill skill = skillsMapper.toEntity(entity);
     skillsValidator.validate(skill);
@@ -61,6 +65,8 @@ public class SkillsServiceImpl implements EntitiesService<SkillsListDto, Skill, 
 
   @Override
   @Transactional
+  @CircuitBreaker(name = "updateSkillCircuitBreaker")
+  @Retry(name = "updateSkillRetry")
   public SkillDto update(UUID id, SkillDto entity) throws EntityNotFoundException, EntityValidateException {
     if (!skillsRepository.existsById(id)) {
       throw new EntityNotFoundException(String.format(SKILL_NOT_FOUND, id));
@@ -73,6 +79,8 @@ public class SkillsServiceImpl implements EntitiesService<SkillsListDto, Skill, 
 
   @Override
   @Transactional
+  @CircuitBreaker(name = "deleteSkillCircuitBreaker")
+  @Retry(name = "deleteSkillRetry")
   public UUID delete(UUID id) throws EntityNotFoundException {
     if (!skillsRepository.existsById(id)) {
       throw new EntityNotFoundException(String.format(SKILL_NOT_FOUND, id));
