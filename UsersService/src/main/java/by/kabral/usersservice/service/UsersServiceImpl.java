@@ -23,7 +23,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.UUID;
 
+import static by.kabral.usersservice.util.CircuitBreakerName.*;
 import static by.kabral.usersservice.util.Message.*;
+import static by.kabral.usersservice.util.RetryName.*;
 import static by.kabral.usersservice.util.StatusName.*;
 
 @Service
@@ -102,8 +104,8 @@ public class UsersServiceImpl implements EntitiesService<UsersListDto, User, Use
 
   @Override
   @Transactional
-  @CircuitBreaker(name = "saveUserCircuitBreaker")
-  @Retry(name = "saveUserRetry")
+  @CircuitBreaker(name = SAVE_USER_BREAKER)
+  @Retry(name = SAVE_USER_RETRY)
   public UserDto save(NewUserDto newUserDto) throws EntityValidateException {
     User user = usersMapper.toEntity(newUserDto);
     usersValidator.validate(user);
@@ -120,8 +122,8 @@ public class UsersServiceImpl implements EntitiesService<UsersListDto, User, Use
 
   @Override
   @Transactional
-  @CircuitBreaker(name = "updateUserCircuitBreaker")
-  @Retry(name = "updateUserRetry")
+  @CircuitBreaker(name = UPDATE_USER_BREAKER)
+  @Retry(name = UPDATE_USER_RETRY)
   public UserDto update(UUID id, NewUserDto entity) throws EntityNotFoundException, EntityValidateException {
     if (!usersRepository.existsById(id)) {
       throw new EntityNotFoundException(USER_NOT_FOUND);
@@ -134,8 +136,8 @@ public class UsersServiceImpl implements EntitiesService<UsersListDto, User, Use
 
   @Override
   @Transactional
-  @CircuitBreaker(name = "deleteUserCircuitBreaker")
-  @Retry(name = "deleteUserRetry")
+  @CircuitBreaker(name = DELETE_USER_BREAKER)
+  @Retry(name = DELETE_USER_RETRY)
   public UUID delete(UUID id) throws EntityNotFoundException {
     if (!usersRepository.existsById(id)) {
       throw new EntityNotFoundException(USER_NOT_FOUND);

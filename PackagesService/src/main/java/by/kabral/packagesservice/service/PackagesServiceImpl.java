@@ -22,7 +22,9 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
+import static by.kabral.packagesservice.util.CircuitBreakerName.*;
 import static by.kabral.packagesservice.util.Message.*;
+import static by.kabral.packagesservice.util.RetryName.*;
 
 @Service
 @RequiredArgsConstructor
@@ -77,8 +79,8 @@ public class PackagesServiceImpl implements EntitiesService<PackagesListDto, Pac
 
   @Override
   @Transactional
-  @CircuitBreaker(name = "savePackageCircuitBreaker")
-  @Retry(name = "savePackageRetry")
+  @CircuitBreaker(name = SAVE_PACKAGE_BREAKER)
+  @Retry(name = SAVE_PACKAGE_RETRY)
   public PackageDto save(PackageDto entity) throws EntityValidateException {
     Package thePackage = packagesMapper.toEntity(entity);
     thePackage.setCreatedAt(LocalDate.now());
@@ -96,8 +98,8 @@ public class PackagesServiceImpl implements EntitiesService<PackagesListDto, Pac
 
   @Override
   @Transactional
-  @CircuitBreaker(name = "updatePackageCircuitBreaker")
-  @Retry(name = "updatePackageRetry")
+  @CircuitBreaker(name = UPDATE_PACKAGE_BREAKER)
+  @Retry(name = UPDATE_PACKAGE_RETRY)
   public PackageDto update(UUID id, PackageDto entity) throws EntityNotFoundException, EntityValidateException {
     if (!packagesRepository.existsById(id)) {
       throw new EntityNotFoundException(String.format(PACKAGE_NOT_FOUND, id));
@@ -111,8 +113,8 @@ public class PackagesServiceImpl implements EntitiesService<PackagesListDto, Pac
 
   @Override
   @Transactional
-  @CircuitBreaker(name = "deletePackageCircuitBreaker")
-  @Retry(name = "deletePackageRetry")
+  @CircuitBreaker(name = DELETE_PACKAGE_BREAKER)
+  @Retry(name = DELETE_PACKAGE_RETRY)
   public UUID delete(UUID id) throws EntityNotFoundException {
     if (!packagesRepository.existsById(id)) {
       throw new EntityNotFoundException(String.format(PACKAGE_NOT_FOUND, id));

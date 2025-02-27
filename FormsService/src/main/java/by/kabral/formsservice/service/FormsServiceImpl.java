@@ -16,7 +16,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.UUID;
 
+import static by.kabral.formsservice.util.CircuitBreakerName.*;
 import static by.kabral.formsservice.util.Message.*;
+import static by.kabral.formsservice.util.RetryName.*;
 
 @Service
 @RequiredArgsConstructor
@@ -49,8 +51,8 @@ public class FormsServiceImpl implements EntitiesService<FormsListDto, Form, For
 
   @Override
   @Transactional
-  @CircuitBreaker(name = "saveFormCircuitBreaker")
-  @Retry(name = "saveFormRetry")
+  @CircuitBreaker(name = SAVE_FORM_BREAKER)
+  @Retry(name = SAVE_FORM_RETRY)
   public FormDto save(FormDto entity) throws EntityValidateException {
     Form form = formsMapper.toEntity(entity);
     formsValidator.validate(form);
@@ -65,8 +67,8 @@ public class FormsServiceImpl implements EntitiesService<FormsListDto, Form, For
 
   @Override
   @Transactional
-  @CircuitBreaker(name = "updateFormCircuitBreaker")
-  @Retry(name = "updateFormRetry")
+  @CircuitBreaker(name = UPDATE_FORM_BREAKER)
+  @Retry(name = UPDATE_FORM_RETRY)
   public FormDto update(UUID id, FormDto entity) throws EntityNotFoundException, EntityValidateException {
     if (!formsRepository.existsById(id)) {
       throw new EntityNotFoundException(String.format(FORM_NOT_FOUND, id));
@@ -80,8 +82,8 @@ public class FormsServiceImpl implements EntitiesService<FormsListDto, Form, For
 
   @Override
   @Transactional
-  @CircuitBreaker(name = "deleteFormCircuitBreaker")
-  @Retry(name = "deleteFormRetry")
+  @CircuitBreaker(name = DELETE_FORM_BREAKER)
+  @Retry(name = DELETE_FORM_RETRY)
   public UUID delete(UUID id) throws EntityNotFoundException {
     if (!formsRepository.existsById(id)) {
       throw new EntityNotFoundException(String.format(FORM_NOT_FOUND, id));

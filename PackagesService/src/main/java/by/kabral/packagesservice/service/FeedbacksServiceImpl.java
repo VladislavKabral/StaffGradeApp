@@ -27,7 +27,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import static by.kabral.packagesservice.util.CircuitBreakerName.*;
 import static by.kabral.packagesservice.util.Message.*;
+import static by.kabral.packagesservice.util.RetryName.*;
 import static by.kabral.packagesservice.util.StatusName.*;
 
 @Service
@@ -92,8 +94,8 @@ public class FeedbacksServiceImpl implements EntitiesService<FeedbacksListDto, F
 
   @Override
   @Transactional
-  @CircuitBreaker(name = "saveFeedbackCircuitBreaker")
-  @Retry(name = "saveFeedbackRetry")
+  @CircuitBreaker(name = SAVE_FEEDBACK_BREAKER)
+  @Retry(name = SAVE_FEEDBACK_RETRY)
   public FeedbackDto save(FeedbackDto entity) throws EntityValidateException, EntityNotFoundException {
     Feedback feedback = feedbacksMapper.toEntity(entity);
     feedbacksValidator.validate(feedback);
@@ -109,8 +111,8 @@ public class FeedbacksServiceImpl implements EntitiesService<FeedbacksListDto, F
   }
 
   @Transactional
-  @CircuitBreaker(name = "completeFeedbackCircuitBreaker")
-  @Retry(name = "completeFeedbackRetry")
+  @CircuitBreaker(name = COMPLETE_FEEDBACK_BREAKER)
+  @Retry(name = COMPLETE_FEEDBACK_RETRY)
   public FeedbackDto complete(UUID id, FeedbackDto entity) throws EntityNotFoundException, EntityValidateException {
     if (!feedbacksRepository.existsById(id)) {
       throw new EntityNotFoundException(String.format(FEEDBACK_NOT_FOUND, id));
@@ -134,8 +136,8 @@ public class FeedbacksServiceImpl implements EntitiesService<FeedbacksListDto, F
 
   @Override
   @Transactional
-  @CircuitBreaker(name = "updateFeedbackCircuitBreaker")
-  @Retry(name = "updateFeedbackRetry")
+  @CircuitBreaker(name = UPDATE_FEEDBACK_BREAKER)
+  @Retry(name = UPDATE_FEEDBACK_RETRY)
   public FeedbackDto update(UUID id, FeedbackDto entity) throws EntityNotFoundException, EntityValidateException {
     if (!feedbacksRepository.existsById(id)) {
       throw new EntityNotFoundException(String.format(FEEDBACK_NOT_FOUND, id));
@@ -156,8 +158,8 @@ public class FeedbacksServiceImpl implements EntitiesService<FeedbacksListDto, F
 
   @Override
   @Transactional
-  @CircuitBreaker(name = "deleteFeedbackCircuitBreaker")
-  @Retry(name = "deleteFeedbackRetry")
+  @CircuitBreaker(name = DELETE_FEEDBACK_BREAKER)
+  @Retry(name = DELETE_FEEDBACK_RETRY)
   public UUID delete(UUID id) throws EntityNotFoundException {
     if (!feedbacksRepository.existsById(id)) {
       throw new EntityNotFoundException(String.format(FEEDBACK_NOT_FOUND, id));

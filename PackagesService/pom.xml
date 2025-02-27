@@ -32,6 +32,7 @@
         <openfeign.version>4.1.0</openfeign.version>
         <eureka-client.version>4.1.4</eureka-client.version>
         <resilience4j.version>3.2.0</resilience4j.version>
+        <wiremock.version>3.12.0</wiremock.version>
     </properties>
     <dependencies>
         <dependency>
@@ -84,6 +85,12 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-circuitbreaker-reactor-resilience4j</artifactId>
             <version>${resilience4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.wiremock</groupId>
+            <artifactId>wiremock</artifactId>
+            <version>${wiremock.version}</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
