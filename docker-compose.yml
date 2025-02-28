@@ -1,0 +1,85 @@
+version: "3.8"
+
+services:
+  db:
+    image: 'postgres:15.1'
+    container_name: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=0000
+    networks:
+      - staff_grade
+
+  eureka-server:
+    image: eureka-server:0.0.1
+    container_name: eureka-server
+    networks:
+      - staff_grade
+    ports:
+      - '8761:8761'
+
+  api-gateway:
+    image: api-gateway:0.0.1
+    container_name: api-gateway
+    networks:
+      - staff_grade
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka
+    depends_on:
+      - eureka-server
+    ports:
+      - '8765:8765'
+
+  forms-service:
+    image: forms-service:0.0.1
+    container_name: forms-service
+    networks:
+      - staff_grade
+    ports:
+      - "8082:8082"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://host.docker.internal/forms_db
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=0000
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka
+    depends_on:
+      - db
+      - eureka-server
+
+  packages-service:
+    image: packages-service:0.0.1
+    container_name: packages-service
+    networks:
+      - staff_grade
+    ports:
+      - "8083:8083"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://host.docker.internal/packages_db
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=0000
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka
+    depends_on:
+      - db
+      - eureka-server
+
+  users-service:
+    image: users-service:0.0.1
+    container_name: users-service
+    networks:
+      - staff_grade
+    ports:
+      - "8081:8081"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://host.docker.internal/users_db
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=0000
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka
+    depends_on:
+      - db
+      - eureka-server
+
+networks:
+  staff_grade:
+    driver: bridge
