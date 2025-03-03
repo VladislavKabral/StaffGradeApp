@@ -8,6 +8,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.util.UUID;
 
 import static by.kabral.usersservice.util.Constant.*;
@@ -18,7 +19,7 @@ import static by.kabral.usersservice.util.Regex.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class PositionDto {
+public class PositionDto implements Serializable {
 
   private UUID id;
 

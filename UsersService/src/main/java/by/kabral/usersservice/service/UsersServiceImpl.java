@@ -18,6 +18,9 @@ import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.github.resilience4j.retry.annotation.Retry;
 import lombok.RequiredArgsConstructor;
 import org.apache.kafka.clients.admin.NewTopic;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -33,6 +36,7 @@ import static by.kabral.usersservice.util.StatusName.*;
 
 @Service
 @RequiredArgsConstructor
+@CacheConfig(cacheNames = "users")
 public class UsersServiceImpl implements EntitiesService<UsersListDto, User, UserDto, NewUserDto> {
 
   private final UsersRepository usersRepository;
@@ -44,6 +48,7 @@ public class UsersServiceImpl implements EntitiesService<UsersListDto, User, Use
 
   @Override
   @Transactional(readOnly = true)
+  @Cacheable()
   public UsersListDto findAll() {
     return UsersListDto.builder()
             .users(usersMapper.toListDto(usersRepository.findAll()))
@@ -103,6 +108,7 @@ public class UsersServiceImpl implements EntitiesService<UsersListDto, User, Use
 
   @Override
   @Transactional(readOnly = true)
+  @Cacheable(key = "#id", unless = "#result == null")
   public UserDto findById(UUID id) throws EntityNotFoundException {
     return usersMapper.toDto(findEntity(id));
   }
@@ -111,6 +117,7 @@ public class UsersServiceImpl implements EntitiesService<UsersListDto, User, Use
   @Transactional
   @CircuitBreaker(name = SAVE_USER_BREAKER)
   @Retry(name = SAVE_USER_RETRY)
+  @CacheEvict(allEntries = true)
   public UserDto save(NewUserDto newUserDto) throws EntityValidateException {
     User user = usersMapper.toEntity(newUserDto);
     usersValidator.validate(user);
@@ -135,6 +142,7 @@ public class UsersServiceImpl implements EntitiesService<UsersListDto, User, Use
   @Transactional
   @CircuitBreaker(name = UPDATE_USER_BREAKER)
   @Retry(name = UPDATE_USER_RETRY)
+  @CacheEvict(key = "#id")
   public UserDto update(UUID id, NewUserDto entity) throws EntityNotFoundException, EntityValidateException {
     if (!usersRepository.existsById(id)) {
       throw new EntityNotFoundException(USER_NOT_FOUND);
@@ -149,6 +157,7 @@ public class UsersServiceImpl implements EntitiesService<UsersListDto, User, Use
   @Transactional
   @CircuitBreaker(name = DELETE_USER_BREAKER)
   @Retry(name = DELETE_USER_RETRY)
+  @CacheEvict(key = "#id")
   public UUID delete(UUID id) throws EntityNotFoundException {
     if (!usersRepository.existsById(id)) {
       throw new EntityNotFoundException(USER_NOT_FOUND);
