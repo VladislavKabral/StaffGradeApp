@@ -4,24 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3fea442a-58f2-45dc-a128-89fed2a9bee5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/ApiGateway/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EurekaServer/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FormsService/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PackagesService/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UsersService/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-gateway-build.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app-build.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/eureka-server-build.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/forms-service-build.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages-service-build.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/users-service-build.bat" afterDir="false" />
+    <list default="true" id="3fea442a-58f2-45dc-a128-89fed2a9bee5" name="Changes" comment="Add dockerfiles, docker-compose file and scripts for building the app">
+      <change afterPath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/config/KafkaConsumerConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/dto/TargetUserDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UsersService/src/main/java/by/kabral/usersservice/config/KafkaProducerConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UsersService/src/main/java/by/kabral/usersservice/config/KafkaTopic.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UsersService/src/main/java/by/kabral/usersservice/dto/TargetUserDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UsersService/src/main/java/by/kabral/usersservice/kafka/KafkaSender.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ApiGateway/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/ApiGateway/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FormsService/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/FormsService/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PackagesService/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/PackagesService/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/service/FeedbacksServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/service/FeedbacksServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/service/PackagesServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/service/PackagesServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/util/Constant.java" beforeDir="false" afterPath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/util/Constant.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PackagesService/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/PackagesService/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UsersService/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/UsersService/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UsersService/src/main/java/by/kabral/usersservice/service/UsersServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/UsersService/src/main/java/by/kabral/usersservice/service/UsersServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UsersService/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/UsersService/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +38,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="stability-config" />
+        <entry key="$PROJECT_DIR$" value="develop" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -67,63 +66,64 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
-    "Maven.ApiGateway [package].executor": "Run",
-    "Maven.EurekaServer [clean,compile].executor": "Run",
-    "Maven.EurekaServer [package].executor": "Run",
-    "Maven.FormsService [clean,install].executor": "Run",
-    "Maven.FormsService [clean,package,install].executor": "Run",
-    "Maven.FormsService [clean,package].executor": "Run",
-    "Maven.FormsService [clean].executor": "Run",
-    "Maven.FormsService [package].executor": "Run",
-    "Maven.PackagesService [clean,install].executor": "Run",
-    "Maven.PackagesService [clean,package].executor": "Run",
-    "Maven.StaffGradeApp [clean,build].executor": "Run",
-    "Maven.StaffGradeApp [clean,install,-e].executor": "Run",
-    "Maven.StaffGradeApp [clean,install].executor": "Run",
-    "Maven.StaffGradeApp [clean,package].executor": "Run",
-    "Maven.StaffGradeApp [clean].executor": "Run",
-    "Maven.StaffGradeApp [idea:clean].executor": "Run",
-    "Maven.UsersService [clean,package].executor": "Run",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "Spring Boot.ApiGatewayApplication.executor": "Run",
-    "Spring Boot.EurekaServerApplication.executor": "Run",
-    "Spring Boot.FormsServiceApplication.executor": "Run",
-    "Spring Boot.PackagesServiceApplication.executor": "Run",
-    "Spring Boot.UsersServiceApplication.executor": "Run",
-    "extract.method.default.visibility": "private",
-    "git-widget-placeholder": "develop",
-    "jdk.selected.JAVA_MODULE": "21",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Asus/.m2/repository/org/projectlombok/lombok/1.18.36/lombok-1.18.36.jar",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "run.configurations.included.in.services": "true",
-    "settings.editor.selected.configurable": "reference.projectsettings.compiler.annotationProcessors",
-    "settings.editor.splitter.proportion": "0.26104417",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Docker.docker-compose.yml: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.ApiGateway [package].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.EurekaServer [clean,compile].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.EurekaServer [package].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.FormsService [clean,install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.FormsService [clean,package,install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.FormsService [clean,package].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.FormsService [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.FormsService [package].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.PackagesService [clean,install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.PackagesService [clean,package].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.StaffGradeApp [clean,build].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.StaffGradeApp [clean,install,-e].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.StaffGradeApp [clean,install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.StaffGradeApp [clean,package].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.StaffGradeApp [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.StaffGradeApp [idea:clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.UsersService [clean,package].executor&quot;: &quot;Run&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;Spring Boot.ApiGatewayApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.EurekaServerApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.FormsServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.PackagesServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.UsersServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;kafka-config&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;21&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Asus/.m2/repository/org/projectlombok/lombok/1.18.36/lombok-1.18.36.jar&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.projectsettings.compiler.annotationProcessors&quot;,
+    &quot;settings.editor.splitter.proportion&quot;: &quot;0.26104417&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "postgresql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
     ],
-    "com.intellij.ide.scratch.LRUPopupBuilder$1/": [
-      "PostgreSQL"
+    &quot;com.intellij.ide.scratch.LRUPopupBuilder$1/&quot;: [
+      &quot;PostgreSQL&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
@@ -162,7 +162,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.FormsServiceApplication">
+  <component name="RunManager" selected="Docker.docker-compose.yml: Compose Deployment">
     <configuration name="ApiGatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="ApiGateway" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="by.kabral.apigateway.ApiGatewayApplication" />
@@ -198,6 +198,25 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
+      <deployment type="docker-compose.yml">
+        <settings />
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-compose.yml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="sourceFilePath" value="docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -246,7 +265,8 @@
       <workItem from="1740471800399" duration="7129000" />
       <workItem from="1740550647874" duration="12344000" />
       <workItem from="1740634556029" duration="12228000" />
-      <workItem from="1740724415545" duration="3016000" />
+      <workItem from="1740724415545" duration="13789000" />
+      <workItem from="1740980600178" duration="3283000" />
     </task>
     <task id="LOCAL-00001" summary="Add liquibase config for services">
       <option name="closed" value="true" />
@@ -328,7 +348,15 @@
       <option name="project" value="LOCAL" />
       <updated>1740638157542</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Add dockerfiles, docker-compose file and scripts for building the app">
+      <option name="closed" value="true" />
+      <created>1740728243898</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1740728243898</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -356,7 +384,8 @@
     <MESSAGE value="Fix completing feedbacks" />
     <MESSAGE value="Add checks for completing feedbacks, getting users by status, creating feedbacks and packages" />
     <MESSAGE value="Add config for circuit breaker and retry" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add config for circuit breaker and retry" />
+    <MESSAGE value="Add dockerfiles, docker-compose file and scripts for building the app" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add dockerfiles, docker-compose file and scripts for building the app" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -22,12 +22,14 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 import static by.kabral.packagesservice.util.CircuitBreakerName.*;
+import static by.kabral.packagesservice.util.Constant.*;
 import static by.kabral.packagesservice.util.Message.*;
 import static by.kabral.packagesservice.util.RetryName.*;
 import static by.kabral.packagesservice.util.StatusName.*;
@@ -123,7 +125,7 @@ public class FeedbacksServiceImpl implements EntitiesService<FeedbacksListDto, F
     feedback.setId(id);
     fillFeedback(feedback);
     feedback.setStatus(statusesRepository.findByName(COMPLETED));
-    feedback.setCompletedAt(LocalDate.now());
+    feedback.setCompletedAt(ZonedDateTime.now(ZoneId.of(UTC_ZONE_NAME)).toLocalDate());
     List<Response> responses = responsesMapper.toEntityList(entity.getResponses());
     formsFeignClient.checkExists(QuestionIdsListDto.builder()
             .questionIds(getQuestionsIds(responses))

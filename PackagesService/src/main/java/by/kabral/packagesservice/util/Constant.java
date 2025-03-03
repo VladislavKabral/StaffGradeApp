@@ -2,6 +2,8 @@ package by.kabral.packagesservice.util;
 
 import lombok.experimental.UtilityClass;
 
+import java.util.UUID;
+
 @UtilityClass
 public class Constant {
 
@@ -15,4 +17,7 @@ public class Constant {
   public final long RETRYER_MAX_PERIOD = 1000L;
   public final int RETRYER_MAX_ATTEMPTS = 5;
   public final int SERVER_ERROR_MIN_STATUS_CODE = 500;
+  public final String COMMUNICATION_SKILLS_FORM_NAME = "%s %s (Communication skills)";
+  public final UUID COMMUNICATION_SKILLS_FORM_UUID = UUID.fromString("b180f894-b722-436a-87f0-bf2bd1482c6e");
+  public final String UTC_ZONE_NAME = "UTC";
 }

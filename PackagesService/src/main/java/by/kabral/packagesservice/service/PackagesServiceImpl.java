@@ -5,6 +5,7 @@ import by.kabral.packagesservice.client.UsersFeignClient;
 import by.kabral.packagesservice.dto.FormDto;
 import by.kabral.packagesservice.dto.PackageDto;
 import by.kabral.packagesservice.dto.PackagesListDto;
+import by.kabral.packagesservice.dto.TargetUserDto;
 import by.kabral.packagesservice.dto.UserDto;
 import by.kabral.packagesservice.exception.EntityNotFoundException;
 import by.kabral.packagesservice.exception.EntityValidateException;
@@ -15,14 +16,17 @@ import by.kabral.packagesservice.util.validator.PackagesValidator;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.github.resilience4j.retry.annotation.Retry;
 import lombok.RequiredArgsConstructor;
+import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.UUID;
 
 import static by.kabral.packagesservice.util.CircuitBreakerName.*;
+import static by.kabral.packagesservice.util.Constant.*;
 import static by.kabral.packagesservice.util.Message.*;
 import static by.kabral.packagesservice.util.RetryName.*;
 
@@ -83,7 +87,7 @@ public class PackagesServiceImpl implements EntitiesService<PackagesListDto, Pac
   @Retry(name = SAVE_PACKAGE_RETRY)
   public PackageDto save(PackageDto entity) throws EntityValidateException {
     Package thePackage = packagesMapper.toEntity(entity);
-    thePackage.setCreatedAt(LocalDate.now());
+    thePackage.setCreatedAt(ZonedDateTime.now(ZoneId.of(UTC_ZONE_NAME)).toLocalDate());
 
     packagesValidator.validate(thePackage);
 
@@ -123,5 +127,28 @@ public class PackagesServiceImpl implements EntitiesService<PackagesListDto, Pac
     packagesRepository.deleteById(id);
 
     return id;
+  }
+
+  @KafkaListener(
+          topics = "${spring.kafka.users-topic-name}",
+          groupId = "${spring.kafka.users-group-id}",
+          containerFactory = "userKafkaListenerContainerFactory"
+  )
+  @Transactional
+  protected void usersServiceListener(TargetUserDto targetUser) throws EntityValidateException {
+    PackageDto thePackage = PackageDto.builder()
+            .name(String.format(COMMUNICATION_SKILLS_FORM_NAME,
+                    targetUser.getLastname(),
+                    targetUser.getFirstname()))
+            .targetUser(UserDto.builder()
+                    .id(targetUser.getId())
+                    .build())
+            .form(FormDto.builder()
+                    .id(COMMUNICATION_SKILLS_FORM_UUID)
+                    .build())
+            .createdAt(ZonedDateTime.now(ZoneId.of(UTC_ZONE_NAME)).toLocalDate())
+            .build();
+
+    save(thePackage);
   }
 }

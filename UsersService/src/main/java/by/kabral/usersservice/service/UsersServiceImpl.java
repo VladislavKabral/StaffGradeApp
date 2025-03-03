@@ -1,12 +1,14 @@
 package by.kabral.usersservice.service;
 
 import by.kabral.usersservice.dto.NewUserDto;
+import by.kabral.usersservice.dto.TargetUserDto;
 import by.kabral.usersservice.dto.UserDto;
 import by.kabral.usersservice.dto.UsersListDto;
 import by.kabral.usersservice.dto.UsersPageDto;
 import by.kabral.usersservice.exception.EntityNotFoundException;
 import by.kabral.usersservice.exception.EntityValidateException;
 import by.kabral.usersservice.exception.InvalidRequestDataException;
+import by.kabral.usersservice.kafka.KafkaSender;
 import by.kabral.usersservice.mapper.UsersMapper;
 import by.kabral.usersservice.model.User;
 import by.kabral.usersservice.repository.StatusesRepository;
@@ -15,6 +17,7 @@ import by.kabral.usersservice.util.validator.UsersValidator;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.github.resilience4j.retry.annotation.Retry;
 import lombok.RequiredArgsConstructor;
+import org.apache.kafka.clients.admin.NewTopic;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -36,6 +39,8 @@ public class UsersServiceImpl implements EntitiesService<UsersListDto, User, Use
   private final StatusesRepository statusRepository;
   private final UsersMapper usersMapper;
   private final UsersValidator usersValidator;
+  private final KafkaSender kafkaSender;
+  private final NewTopic usersTopic;
 
   @Override
   @Transactional(readOnly = true)
@@ -117,6 +122,12 @@ public class UsersServiceImpl implements EntitiesService<UsersListDto, User, Use
       throw new EntityValidateException(String.format(USER_NOT_CREATED, newUserDto.getEmail()));
     }
 
+    kafkaSender.sendRequestWithNewTargetUser(TargetUserDto.builder()
+                    .id(userDto.getId())
+                    .lastname(userDto.getLastname())
+                    .firstname(userDto.getFirstname())
+                    .build(),
+            usersTopic.name());
     return userDto;
   }
 
