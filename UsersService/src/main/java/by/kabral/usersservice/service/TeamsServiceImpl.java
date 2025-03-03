@@ -11,6 +11,9 @@ import by.kabral.usersservice.util.validator.TeamsValidator;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.github.resilience4j.retry.annotation.Retry;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,6 +25,7 @@ import static by.kabral.usersservice.util.RetryName.*;
 
 @Service
 @RequiredArgsConstructor
+@CacheConfig(cacheNames = "teams")
 public class TeamsServiceImpl implements EntitiesService<TeamsListDto, Team, TeamDto, TeamDto>{
 
   private final TeamsRepository teamsRepository;
@@ -30,6 +34,7 @@ public class TeamsServiceImpl implements EntitiesService<TeamsListDto, Team, Tea
 
   @Override
   @Transactional(readOnly = true)
+  @Cacheable()
   public TeamsListDto findAll() {
     return teamsMapper.toListDto(teamsRepository.findAll());
   }
@@ -43,6 +48,7 @@ public class TeamsServiceImpl implements EntitiesService<TeamsListDto, Team, Tea
 
   @Override
   @Transactional(readOnly = true)
+  @Cacheable(key = "#id", unless = "#result == null")
   public TeamDto findById(UUID id) throws EntityNotFoundException {
     return teamsMapper.toDto(findEntity(id));
   }
@@ -51,6 +57,7 @@ public class TeamsServiceImpl implements EntitiesService<TeamsListDto, Team, Tea
   @Transactional
   @CircuitBreaker(name = SAVE_TEAM_BREAKER)
   @Retry(name = SAVE_TEAM_RETRY)
+  @CacheEvict(allEntries = true)
   public TeamDto save(TeamDto entity) throws EntityValidateException {
     Team team = teamsMapper.toEntity(entity);
     teamsValidator.validate(team);
@@ -68,6 +75,7 @@ public class TeamsServiceImpl implements EntitiesService<TeamsListDto, Team, Tea
   @Transactional
   @CircuitBreaker(name = UPDATE_TEAM_BREAKER)
   @Retry(name = UPDATE_TEAM_RETRY)
+  @CacheEvict(key = "#id")
   public TeamDto update(UUID id, TeamDto teamDto) throws EntityNotFoundException, EntityValidateException {
     if (!teamsRepository.existsById(id)) {
       throw new EntityNotFoundException(TEAM_NOT_FOUND);
@@ -82,6 +90,7 @@ public class TeamsServiceImpl implements EntitiesService<TeamsListDto, Team, Tea
   @Transactional
   @CircuitBreaker(name = DELETE_TEAM_BREAKER)
   @Retry(name = DELETE_TEAM_RETRY)
+  @CacheEvict(key = "#id")
   public UUID delete(UUID id) throws EntityNotFoundException {
     if (!teamsRepository.existsById(id)) {
       throw new EntityNotFoundException(TEAM_NOT_FOUND);
