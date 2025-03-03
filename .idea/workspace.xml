@@ -5,8 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3fea442a-58f2-45dc-a128-89fed2a9bee5" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UsersService/src/main/java/by/kabral/usersservice/service/TeamsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/UsersService/src/main/java/by/kabral/usersservice/service/TeamsServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UsersService/src/main/java/by/kabral/usersservice/dto/TeamsListDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/UsersService/src/main/java/by/kabral/usersservice/dto/TeamsListDto.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -254,7 +253,7 @@
       <workItem from="1740634556029" duration="12228000" />
       <workItem from="1740724415545" duration="13789000" />
       <workItem from="1740980600178" duration="3283000" />
-      <workItem from="1741019886325" duration="799000" />
+      <workItem from="1741019886325" duration="1108000" />
     </task>
     <task id="LOCAL-00001" summary="Add liquibase config for services">
       <option name="closed" value="true" />
@@ -352,7 +351,15 @@
       <option name="project" value="LOCAL" />
       <updated>1741007004726</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Add caching for teams">
+      <option name="closed" value="true" />
+      <created>1741020720175</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1741020720175</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -382,7 +389,8 @@
     <MESSAGE value="Add config for circuit breaker and retry" />
     <MESSAGE value="Add dockerfiles, docker-compose file and scripts for building the app" />
     <MESSAGE value="Add redis config and caching for users" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add redis config and caching for users" />
+    <MESSAGE value="Add caching for teams" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add caching for teams" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
