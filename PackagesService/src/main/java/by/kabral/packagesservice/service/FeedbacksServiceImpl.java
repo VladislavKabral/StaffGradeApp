@@ -19,6 +19,9 @@ import by.kabral.packagesservice.util.validator.FeedbacksValidator;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.github.resilience4j.retry.annotation.Retry;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -36,6 +39,7 @@ import static by.kabral.packagesservice.util.StatusName.*;
 
 @Service
 @RequiredArgsConstructor
+@CacheConfig(cacheNames = "feedbacks")
 public class FeedbacksServiceImpl implements EntitiesService<FeedbacksListDto, Feedback, FeedbackDto> {
 
   private final FeedbacksRepository feedbacksRepository;
@@ -49,6 +53,7 @@ public class FeedbacksServiceImpl implements EntitiesService<FeedbacksListDto, F
 
   @Override
   @Transactional(readOnly = true)
+  @Cacheable()
   public FeedbacksListDto findAll() {
     List<Feedback> feedbacks = feedbacksRepository.findAll();
 
@@ -76,6 +81,7 @@ public class FeedbacksServiceImpl implements EntitiesService<FeedbacksListDto, F
 
   @Override
   @Transactional(readOnly = true)
+  @Cacheable(key = "#id", unless = "#result == null")
   public FeedbackDto findById(UUID id) throws EntityNotFoundException {
     return fillFeedback(findEntity(id));
   }
@@ -98,6 +104,7 @@ public class FeedbacksServiceImpl implements EntitiesService<FeedbacksListDto, F
   @Transactional
   @CircuitBreaker(name = SAVE_FEEDBACK_BREAKER)
   @Retry(name = SAVE_FEEDBACK_RETRY)
+  @CacheEvict(allEntries = true)
   public FeedbackDto save(FeedbackDto entity) throws EntityValidateException, EntityNotFoundException {
     Feedback feedback = feedbacksMapper.toEntity(entity);
     feedbacksValidator.validate(feedback);
@@ -115,6 +122,7 @@ public class FeedbacksServiceImpl implements EntitiesService<FeedbacksListDto, F
   @Transactional
   @CircuitBreaker(name = COMPLETE_FEEDBACK_BREAKER)
   @Retry(name = COMPLETE_FEEDBACK_RETRY)
+  @CacheEvict(key = "#id")
   public FeedbackDto complete(UUID id, FeedbackDto entity) throws EntityNotFoundException, EntityValidateException {
     if (!feedbacksRepository.existsById(id)) {
       throw new EntityNotFoundException(String.format(FEEDBACK_NOT_FOUND, id));
@@ -140,6 +148,7 @@ public class FeedbacksServiceImpl implements EntitiesService<FeedbacksListDto, F
   @Transactional
   @CircuitBreaker(name = UPDATE_FEEDBACK_BREAKER)
   @Retry(name = UPDATE_FEEDBACK_RETRY)
+  @CacheEvict(key = "#id")
   public FeedbackDto update(UUID id, FeedbackDto entity) throws EntityNotFoundException, EntityValidateException {
     if (!feedbacksRepository.existsById(id)) {
       throw new EntityNotFoundException(String.format(FEEDBACK_NOT_FOUND, id));
@@ -162,6 +171,7 @@ public class FeedbacksServiceImpl implements EntitiesService<FeedbacksListDto, F
   @Transactional
   @CircuitBreaker(name = DELETE_FEEDBACK_BREAKER)
   @Retry(name = DELETE_FEEDBACK_RETRY)
+  @CacheEvict(key = "#id")
   public UUID delete(UUID id) throws EntityNotFoundException {
     if (!feedbacksRepository.existsById(id)) {
       throw new EntityNotFoundException(String.format(FEEDBACK_NOT_FOUND, id));

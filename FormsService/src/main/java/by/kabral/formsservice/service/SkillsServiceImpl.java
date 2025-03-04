@@ -11,6 +11,9 @@ import by.kabral.formsservice.util.validator.SkillsValidator;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.github.resilience4j.retry.annotation.Retry;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,6 +25,7 @@ import static by.kabral.formsservice.util.RetryName.*;
 
 @Service
 @RequiredArgsConstructor
+@CacheConfig(cacheNames = "skills")
 public class SkillsServiceImpl implements EntitiesService<SkillsListDto, Skill, SkillDto> {
 
   private final SkillsRepository skillsRepository;
@@ -30,6 +34,7 @@ public class SkillsServiceImpl implements EntitiesService<SkillsListDto, Skill, 
 
   @Override
   @Transactional(readOnly = true)
+  @Cacheable()
   public SkillsListDto findAll() {
     return SkillsListDto.builder()
             .skills(skillsMapper.toListDto(skillsRepository.findAll()))
@@ -45,6 +50,7 @@ public class SkillsServiceImpl implements EntitiesService<SkillsListDto, Skill, 
 
   @Override
   @Transactional(readOnly = true)
+  @Cacheable(key = "#id", unless = "#result == null")
   public SkillDto findById(UUID id) throws EntityNotFoundException {
     return skillsMapper.toDto(findEntity(id));
   }
@@ -53,6 +59,7 @@ public class SkillsServiceImpl implements EntitiesService<SkillsListDto, Skill, 
   @Transactional
   @CircuitBreaker(name = SAVE_SKILL_BREAKER)
   @Retry(name = SAVE_SKILL_RETRY)
+  @CacheEvict(allEntries = true)
   public SkillDto save(SkillDto entity) throws EntityValidateException {
     Skill skill = skillsMapper.toEntity(entity);
     skillsValidator.validate(skill);
@@ -69,6 +76,7 @@ public class SkillsServiceImpl implements EntitiesService<SkillsListDto, Skill, 
   @Transactional
   @CircuitBreaker(name = UPDATE_SKILL_BREAKER)
   @Retry(name = UPDATE_SKILL_RETRY)
+  @CacheEvict(key = "#id")
   public SkillDto update(UUID id, SkillDto entity) throws EntityNotFoundException, EntityValidateException {
     if (!skillsRepository.existsById(id)) {
       throw new EntityNotFoundException(String.format(SKILL_NOT_FOUND, id));
@@ -83,6 +91,7 @@ public class SkillsServiceImpl implements EntitiesService<SkillsListDto, Skill, 
   @Transactional
   @CircuitBreaker(name = DELETE_SKILL_BREAKER)
   @Retry(name = DELETE_SKILL_RETRY)
+  @CacheEvict(key = "#id")
   public UUID delete(UUID id) throws EntityNotFoundException {
     if (!skillsRepository.existsById(id)) {
       throw new EntityNotFoundException(String.format(SKILL_NOT_FOUND, id));

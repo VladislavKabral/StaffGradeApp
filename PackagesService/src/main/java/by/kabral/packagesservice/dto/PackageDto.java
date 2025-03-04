@@ -1,6 +1,5 @@
 package by.kabral.packagesservice.dto;
 
-import by.kabral.packagesservice.model.Feedback;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
@@ -10,6 +9,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
@@ -22,7 +22,7 @@ import static by.kabral.packagesservice.util.Regex.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class PackageDto {
+public class PackageDto implements Serializable {
 
   private UUID id;
 
@@ -41,5 +41,5 @@ public class PackageDto {
 
   private LocalDate createdAt;
 
-  private List<Feedback> feedbacks;
+  private List<FeedbackDto> feedbacks;
 }

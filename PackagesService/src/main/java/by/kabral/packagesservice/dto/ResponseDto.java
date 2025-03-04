@@ -11,6 +11,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.util.UUID;
 
 import static by.kabral.packagesservice.util.Constant.*;
@@ -21,7 +22,7 @@ import static by.kabral.packagesservice.util.Regex.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ResponseDto {
+public class ResponseDto implements Serializable {
 
   private UUID id;
 

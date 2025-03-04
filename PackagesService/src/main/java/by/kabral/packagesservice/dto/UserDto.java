@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.util.UUID;
 
 import static by.kabral.packagesservice.util.Message.*;
@@ -14,7 +15,7 @@ import static by.kabral.packagesservice.util.Message.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class UserDto {
+public class UserDto implements Serializable {
 
   @NotNull(message = USER_ID_IS_NULL)
   private UUID id;
