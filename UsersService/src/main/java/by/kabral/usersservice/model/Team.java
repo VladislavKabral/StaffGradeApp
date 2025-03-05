@@ -34,7 +34,7 @@ public class Team implements Serializable {
   @Column(name = "name")
   private String name;
 
-  @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+  @OneToMany(cascade = CascadeType.ALL)
   @JoinColumn(name = "id")
   private List<User> users;
 }

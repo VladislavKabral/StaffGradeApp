@@ -8,7 +8,8 @@ public class Message {
   public final String INVALID_PAGE_REQUEST = "The number of page and count of elements can't be less than zero.";
   public final String USER_NOT_FOUND = "The user with id '%s' wasn't found.";
   public final String TEAM_NOT_FOUND = "The team with id '%s' wasn't found.";
-  public final String POSITION_NOT_FOUND = "The position with id '%d' wasn't found.";
+  public final String POSITION_NOT_FOUND = "The position with id '%s' wasn't found.";
+  public final String STATUS_NOT_FOUND = "The status with id '%s' wasn't found.";
   public final String USER_NOT_CREATED = "The user with email '%s' wasn't created.";
   public final String TEAM_NOT_CREATED = "The team with name '%s' wasn't created.";
   public final String POSITION_NOT_CREATED = "The position with name '%s' wasn't created.";
@@ -29,7 +30,6 @@ public class Message {
   public final String USER_PASSWORD_IS_EMPTY = "User's password must be not empty.";
   public final String METHOD_NOT_ALLOWED = "%s for this endpoint.";
   public final String REQUEST_PARAMETER_IS_INVALID = "Failed to convert value in request parameter.";
-  public final String CANNOT_GET_RESPONSE_FROM_EXTERNAL_SERVICE = "External service '%s' failed to process after max retries.";
   public final String USER_WITH_GIVEN_EMAIL_ALREADY_EXISTS = "The user with email '%s' already exists.";
   public final String POSITION_WITH_GIVEN_NAME_ALREADY_EXISTS = "The position with name '%s' already exists.";
   public final String TEAM_WITH_GIVEN_NAME_ALREADY_EXISTS = "The team with name '%s' already exists.";

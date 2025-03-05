@@ -33,7 +33,7 @@ public class PositionsServiceImpl implements EntitiesService<PositionsListDto, P
   @Transactional(readOnly = true)
   public Position findEntity(UUID id) throws EntityNotFoundException {
     return positionsRepository.findById(id)
-            .orElseThrow(() -> new EntityNotFoundException(POSITION_NOT_FOUND));
+            .orElseThrow(() -> new EntityNotFoundException(String.format(POSITION_NOT_FOUND, id)));
   }
 
   @Override
@@ -61,7 +61,7 @@ public class PositionsServiceImpl implements EntitiesService<PositionsListDto, P
   @Transactional
   public PositionDto update(UUID id, PositionDto entity) throws EntityNotFoundException, EntityValidateException {
     if (!positionsRepository.existsById(id)) {
-      throw new EntityNotFoundException(POSITION_NOT_FOUND);
+      throw new EntityNotFoundException(String.format(POSITION_NOT_FOUND, id));
     }
 
     Position position = positionMapper.toEntity(entity);
@@ -73,10 +73,15 @@ public class PositionsServiceImpl implements EntitiesService<PositionsListDto, P
   @Transactional
   public UUID delete(UUID id) throws EntityNotFoundException {
     if (!positionsRepository.existsById(id)) {
-      throw new EntityNotFoundException(POSITION_NOT_FOUND);
+      throw new EntityNotFoundException(String.format(POSITION_NOT_FOUND, id));
     }
 
     positionsRepository.deleteById(id);
     return id;
+  }
+
+  @Transactional(readOnly = true)
+  public boolean isPositionExist(UUID id) {
+    return positionsRepository.existsById(id);
   }
 }

@@ -40,7 +40,7 @@ import static by.kabral.usersservice.util.StatusName.*;
 public class UsersServiceImpl implements EntitiesService<UsersListDto, User, UserDto, NewUserDto> {
 
   private final UsersRepository usersRepository;
-  private final StatusesRepository statusRepository;
+  private final StatusesRepository statusesRepository;
   private final UsersMapper usersMapper;
   private final UsersValidator usersValidator;
   private final KafkaSender kafkaSender;
@@ -118,10 +118,10 @@ public class UsersServiceImpl implements EntitiesService<UsersListDto, User, Use
   @CircuitBreaker(name = SAVE_USER_BREAKER)
   @Retry(name = SAVE_USER_RETRY)
   @CacheEvict(allEntries = true)
-  public UserDto save(NewUserDto newUserDto) throws EntityValidateException {
+  public UserDto save(NewUserDto newUserDto) throws EntityValidateException, EntityNotFoundException {
     User user = usersMapper.toEntity(newUserDto);
     usersValidator.validate(user);
-    user.setStatus(statusRepository.findByName(AT_WORK));
+    user.setStatus(statusesRepository.findByName(AT_WORK));
 
     UserDto userDto = usersMapper.toDto(usersRepository.save(user));
 
@@ -144,12 +144,29 @@ public class UsersServiceImpl implements EntitiesService<UsersListDto, User, Use
   @Retry(name = UPDATE_USER_RETRY)
   @CacheEvict(key = "#id")
   public UserDto update(UUID id, NewUserDto entity) throws EntityNotFoundException, EntityValidateException {
-    if (!usersRepository.existsById(id)) {
-      throw new EntityNotFoundException(USER_NOT_FOUND);
+    User user = findEntity(id);
+    User rawUser = usersMapper.toEntity(entity);
+    rawUser.setId(id);
+    usersValidator.validate(rawUser);
+
+    user.setLastname(rawUser.getLastname());
+    user.setFirstname(rawUser.getFirstname());
+    user.setEmail(rawUser.getEmail());
+    user.setPassword(rawUser.getPassword());
+
+    if (rawUser.getManager() != null) {
+      user.setManager(rawUser.getManager());
+    }
+    if (rawUser.getStatus() != null) {
+      user.setStatus(rawUser.getStatus());
+    }
+    if (rawUser.getPosition() != null) {
+      user.setPosition(rawUser.getPosition());
+    }
+    if (rawUser.getTeam() != null) {
+      user.setTeam(rawUser.getTeam());
     }
 
-    User user = usersMapper.toEntity(entity);
-    usersValidator.validate(user);
     return usersMapper.toDto(usersRepository.save(user));
   }
 
@@ -160,7 +177,7 @@ public class UsersServiceImpl implements EntitiesService<UsersListDto, User, Use
   @CacheEvict(key = "#id")
   public UUID delete(UUID id) throws EntityNotFoundException {
     if (!usersRepository.existsById(id)) {
-      throw new EntityNotFoundException(USER_NOT_FOUND);
+      throw new EntityNotFoundException(String.format(USER_NOT_FOUND, id));
     }
 
     usersRepository.deleteById(id);

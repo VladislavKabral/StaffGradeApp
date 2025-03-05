@@ -99,4 +99,9 @@ public class TeamsServiceImpl implements EntitiesService<TeamsListDto, Team, Tea
     teamsRepository.deleteById(id);
     return id;
   }
+
+  @Transactional(readOnly = true)
+  public boolean isTeamExist(UUID id) {
+    return teamsRepository.existsById(id);
+  }
 }

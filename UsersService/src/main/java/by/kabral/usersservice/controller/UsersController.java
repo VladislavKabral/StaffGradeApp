@@ -55,7 +55,7 @@ public class UsersController {
   }
 
   @PostMapping
-  public ResponseEntity<UserDto> saveUser(@RequestBody @Valid NewUserDto newUserDto) throws EntityValidateException {
+  public ResponseEntity<UserDto> saveUser(@RequestBody @Valid NewUserDto newUserDto) throws EntityValidateException, EntityNotFoundException {
     return new ResponseEntity<>(usersService.save(newUserDto), HttpStatus.CREATED);
   }
 
