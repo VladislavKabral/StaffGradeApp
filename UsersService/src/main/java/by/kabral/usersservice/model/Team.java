@@ -6,7 +6,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -34,7 +33,6 @@ public class Team implements Serializable {
   @Column(name = "name")
   private String name;
 
-  @OneToMany(cascade = CascadeType.ALL)
-  @JoinColumn(name = "id")
+  @OneToMany(cascade = CascadeType.ALL, mappedBy = "team")
   private List<User> users;
 }

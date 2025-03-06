@@ -2,7 +2,9 @@ package by.kabral.usersservice.controller;
 
 import by.kabral.usersservice.dto.NewUserDto;
 import by.kabral.usersservice.dto.UserDto;
+import by.kabral.usersservice.dto.UsersIdsListDto;
 import by.kabral.usersservice.dto.UsersListDto;
+import by.kabral.usersservice.dto.UsersMapDto;
 import by.kabral.usersservice.dto.UsersPageDto;
 import by.kabral.usersservice.exception.EntityNotFoundException;
 import by.kabral.usersservice.exception.EntityValidateException;
@@ -52,6 +54,11 @@ public class UsersController {
   @GetMapping("/{id}")
   public ResponseEntity<UserDto> getUserById(@PathVariable("id") UUID id) throws EntityNotFoundException {
     return new ResponseEntity<>(usersService.findById(id), HttpStatus.OK);
+  }
+
+  @PostMapping("/ids")
+  public ResponseEntity<UsersMapDto> getUsersById(@RequestBody UsersIdsListDto usersIds) {
+    return new ResponseEntity<>(usersService.findUsersById(usersIds), HttpStatus.OK);
   }
 
   @PostMapping

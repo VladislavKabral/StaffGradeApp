@@ -7,10 +7,12 @@ import by.kabral.packagesservice.dto.PackageDto;
 import by.kabral.packagesservice.dto.PackagesListDto;
 import by.kabral.packagesservice.dto.TargetUserDto;
 import by.kabral.packagesservice.dto.UserDto;
+import by.kabral.packagesservice.dto.UsersIdsListDto;
 import by.kabral.packagesservice.exception.EntityNotFoundException;
 import by.kabral.packagesservice.exception.EntityValidateException;
 import by.kabral.packagesservice.mapper.FeedbacksMapper;
 import by.kabral.packagesservice.mapper.PackagesMapper;
+import by.kabral.packagesservice.model.Feedback;
 import by.kabral.packagesservice.model.Package;
 import by.kabral.packagesservice.repository.PackagesRepository;
 import by.kabral.packagesservice.util.validator.PackagesValidator;
@@ -27,7 +29,10 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import static by.kabral.packagesservice.util.CircuitBreakerName.*;
 import static by.kabral.packagesservice.util.Constant.*;
@@ -70,6 +75,7 @@ public class PackagesServiceImpl implements EntitiesService<PackagesListDto, Pac
   private PackageDto fillPackageDto(Package entity) {
     UserDto targetUser = usersFeignClient.getUserById(entity.getTargetUserId()).getBody();
     FormDto form = formsFeignClient.getFormById(entity.getFormId()).getBody();
+    Map<UUID, UserDto> sourceUsers = getSourceUsersForFeedbacks(entity.getFeedbacks());
 
     return PackageDto.builder()
             .id(entity.getId())
@@ -78,7 +84,7 @@ public class PackagesServiceImpl implements EntitiesService<PackagesListDto, Pac
             .form(form)
             .isPublic(entity.isPublic())
             .createdAt(entity.getCreatedAt())
-            .feedbacks(feedbacksMapper.toListDto(entity.getFeedbacks()))
+            .feedbacks(feedbacksMapper.toListDto(entity.getFeedbacks(), sourceUsers))
             .build();
   }
 
@@ -162,5 +168,21 @@ public class PackagesServiceImpl implements EntitiesService<PackagesListDto, Pac
             .build();
 
     save(thePackage);
+  }
+
+  private Map<UUID, UserDto> getSourceUsersForFeedbacks(List<Feedback> feedbacks) {
+    List<UUID> sourceUsersIds = feedbacks.stream()
+            .map(Feedback::getSourceUserId)
+            .collect(Collectors.toSet())
+            .stream()
+            .toList();
+
+    UsersIdsListDto usersIdsList = UsersIdsListDto.builder()
+            .ids(sourceUsersIds)
+            .build();
+
+    return Objects.requireNonNull(usersFeignClient.getUsersById(usersIdsList)
+                    .getBody())
+            .getUsers();
   }
 }

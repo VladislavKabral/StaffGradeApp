@@ -2,10 +2,14 @@ package by.kabral.packagesservice.client;
 
 import by.kabral.packagesservice.config.FeignClientConfig;
 import by.kabral.packagesservice.dto.UserDto;
+import by.kabral.packagesservice.dto.UsersIdsListDto;
+import by.kabral.packagesservice.dto.UsersMapDto;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.UUID;
 
@@ -16,4 +20,7 @@ public interface UsersFeignClient {
 
   @GetMapping("/{id}")
   ResponseEntity<UserDto> getUserById(@PathVariable("id") UUID id);
+
+  @PostMapping("/ids")
+  ResponseEntity<UsersMapDto> getUsersById(@RequestBody UsersIdsListDto usersIds);
 }

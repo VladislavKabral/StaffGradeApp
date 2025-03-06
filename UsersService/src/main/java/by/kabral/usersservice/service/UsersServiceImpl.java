@@ -3,7 +3,9 @@ package by.kabral.usersservice.service;
 import by.kabral.usersservice.dto.NewUserDto;
 import by.kabral.usersservice.dto.TargetUserDto;
 import by.kabral.usersservice.dto.UserDto;
+import by.kabral.usersservice.dto.UsersIdsListDto;
 import by.kabral.usersservice.dto.UsersListDto;
+import by.kabral.usersservice.dto.UsersMapDto;
 import by.kabral.usersservice.dto.UsersPageDto;
 import by.kabral.usersservice.exception.EntityNotFoundException;
 import by.kabral.usersservice.exception.EntityValidateException;
@@ -28,6 +30,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import static by.kabral.usersservice.util.CircuitBreakerName.*;
 import static by.kabral.usersservice.util.Message.*;
@@ -77,6 +80,14 @@ public class UsersServiceImpl implements EntitiesService<UsersListDto, User, Use
 
     return UsersListDto.builder()
             .users(usersMapper.toListDto(users))
+            .build();
+  }
+
+  @Transactional(readOnly = true)
+  public UsersMapDto findUsersById(UsersIdsListDto usersIdsList) {
+    List<User> users = usersRepository.findAllById(usersIdsList.getIds());
+    return UsersMapDto.builder()
+            .users(users.stream().collect(Collectors.toMap(User::getId, usersMapper::toDto)))
             .build();
   }
 

@@ -4,18 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3fea442a-58f2-45dc-a128-89fed2a9bee5" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+    <list default="true" id="3fea442a-58f2-45dc-a128-89fed2a9bee5" name="Changes" comment="Fix updating users and deleting teams">
+      <change afterPath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/dto/UsersIdsListDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/dto/UsersMapDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UsersService/src/main/java/by/kabral/usersservice/dto/UsersIdsListDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UsersService/src/main/java/by/kabral/usersservice/dto/UsersMapDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/client/UsersFeignClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/client/UsersFeignClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/mapper/FeedbacksMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/mapper/FeedbacksMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/model/Package.java" beforeDir="false" afterPath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/model/Package.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/service/PackagesServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/PackagesService/src/main/java/by/kabral/packagesservice/service/PackagesServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UsersService/src/main/java/by/kabral/usersservice/controller/UsersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/UsersService/src/main/java/by/kabral/usersservice/controller/UsersController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UsersService/src/main/java/by/kabral/usersservice/model/Team.java" beforeDir="false" afterPath="$PROJECT_DIR$/UsersService/src/main/java/by/kabral/usersservice/model/Team.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UsersService/src/main/java/by/kabral/usersservice/service/EntitiesService.java" beforeDir="false" afterPath="$PROJECT_DIR$/UsersService/src/main/java/by/kabral/usersservice/service/EntitiesService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UsersService/src/main/java/by/kabral/usersservice/service/PositionsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/UsersService/src/main/java/by/kabral/usersservice/service/PositionsServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UsersService/src/main/java/by/kabral/usersservice/service/TeamsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/UsersService/src/main/java/by/kabral/usersservice/service/TeamsServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UsersService/src/main/java/by/kabral/usersservice/service/UsersServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/UsersService/src/main/java/by/kabral/usersservice/service/UsersServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UsersService/src/main/java/by/kabral/usersservice/util/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/UsersService/src/main/java/by/kabral/usersservice/util/Message.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UsersService/src/main/java/by/kabral/usersservice/util/validator/UsersValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/UsersService/src/main/java/by/kabral/usersservice/util/validator/UsersValidator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UsersService/src/main/java/by/kabral/usersservice/util/validator/Validator.java" beforeDir="false" afterPath="$PROJECT_DIR$/UsersService/src/main/java/by/kabral/usersservice/util/validator/Validator.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -267,7 +268,8 @@
       <workItem from="1740980600178" duration="3283000" />
       <workItem from="1741019886325" duration="1269000" />
       <workItem from="1741068291409" duration="5242000" />
-      <workItem from="1741178394696" duration="3515000" />
+      <workItem from="1741178394696" duration="3585000" />
+      <workItem from="1741242627181" duration="10374000" />
     </task>
     <task id="LOCAL-00001" summary="Add liquibase config for services">
       <option name="closed" value="true" />
@@ -381,7 +383,15 @@
       <option name="project" value="LOCAL" />
       <updated>1741021157365</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Fix updating users and deleting teams">
+      <option name="closed" value="true" />
+      <created>1741181968754</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1741181968754</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -413,7 +423,8 @@
     <MESSAGE value="Add redis config and caching for users" />
     <MESSAGE value="Add caching for teams" />
     <MESSAGE value="Small fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="Small fix" />
+    <MESSAGE value="Fix updating users and deleting teams" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix updating users and deleting teams" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
